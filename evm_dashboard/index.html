@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVM Project Dashboard | Redmine Integration</title>
+    <meta name="description" content="Redmineのデータと連携し、プロジェクトの進捗やコスト効率をEVM（Earned Value Management）を用いてリアルタイムに分析・可視化するダッシュボード。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- EVM Data -->
+    <script src="evm_data.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <i class="fa-solid fa-chart-line-up logo-icon"></i>
+                <span class="logo-text">Antigravity EVM</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" id="btn-summary">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>ダッシュボード</span>
+                </a>
+                <a href="#" class="nav-item" id="btn-sync-info">
+                    <i class="fa-solid fa-rotate"></i>
+                    <span>連携ステータス</span>
+                </a>
+                <a href="#" class="nav-item" id="btn-work-logs">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>稼働実績と日報</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="project-info-badge">
+                    <span class="badge-label">PROJECT ID</span>
+                    <span class="badge-value">system_project_2026</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 id="main-title">EVM プロジェクト進捗分析</h1>
+                    <p class="subtitle" id="last-update-time">最終データ更新: 取得中...</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="btn-sync">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>データを再読み込み</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="content-scroll-container">
+                <!-- VIEW 1: Dashboard -->
+                <div id="view-dashboard" class="tab-view active">
+                    <!-- KPI Section -->
+                    <section class="kpi-grid">
+                        <!-- Progress Card -->
+                        <div class="kpi-card progress-card">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-percent"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">プロジェクト進捗率</span>
+                                <h2 class="kpi-value" id="kpi-progress">0%</h2>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" id="kpi-progress-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SPI Card -->
+                        <div class="kpi-card" id="card-spi">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">スケジュール効率指数 (SPI)</span>
+                                <h2 class="kpi-value" id="kpi-spi">0.00</h2>
+                                <span class="kpi-status" id="status-spi">判定中...</span>
+                            </div>
+                        </div>
+
+                        <!-- CPI Card -->
+                        <div class="kpi-card" id="card-cpi">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-coins"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">コスト効率指数 (CPI)</span>
+                                <h2 class="kpi-value" id="kpi-cpi">0.00</h2>
+                                <span class="kpi-status" id="status-cpi">判定中...</span>
+                            </div>
+                        </div>
+
+                        <!-- BAC/EAC Card -->
+                        <div class="kpi-card">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-calculator"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">現在の総実績工数 / 総予算</span>
+                                <h2 class="kpi-value"><span id="kpi-ac">0h</span> <span class="divider">/</span> <span id="kpi-bac" class="sub-val">0h</span></h2>
+                                <span class="kpi-status" id="status-sv-cv">SV: 0h | CV: 0h</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Chart and Analysis Grid -->
+                    <div class="analysis-grid">
+                        <!-- S-Curve Chart Panel -->
+                        <div class="panel chart-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-title"><i class="fa-solid fa-chart-line"></i> EVM 管理曲線 (S字カーブ)</h3>
+                                <div class="chart-legend-info">
+                                    <span class="legend-dot pv"></span><span>PV: 計画</span>
+                                    <span class="legend-dot ev"></span><span>EV: 出来高</span>
+                                    <span class="legend-dot ac"></span><span>AC: 実績</span>
+                                </div>
+                            </div>
+                            <div class="panel-body chart-body">
+                                <canvas id="evmChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- EVM Definition Panel -->
+                        <div class="panel info-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-title"><i class="fa-solid fa-graduation-cap"></i> EVM 指標の読み方</h3>
+                            </div>
+                            <div class="panel-body info-body">
+                                <div class="info-item">
+                                    <div class="info-icon good"><i class="fa-solid fa-circle-check"></i></div>
+                                    <div class="info-text">
+                                        <strong>SPI/CPI ≧ 1.0 (良好)</strong>
+                                        <p>予定よりも進捗が早く、あるいは予算（工数）に余裕を持って稼働できています。</p>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                    <div class="info-text">
+                                        <strong>0.9 ≦ SPI/CPI < 1.0 (注意)</strong>
+                                        <p>わずかな遅れやコスト超過の傾向があります。タスクの調整が必要です。</p>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon danger"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="info-text">
+                                        <strong>SPI/CPI < 0.9 (危険)</strong>
+                                        <p>深刻なスケジュール遅延、または工数の大幅超過が発生しています。対策が急務です。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Members Analysis Section -->
+                    <section class="panel members-panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title"><i class="fa-solid fa-users-gear"></i> メンバー別 進捗・効率分析</h3>
+                            <p class="panel-subtitle">各メンバーの担当タスクベースでの出来高(EV)・スケジュール効率(SPI)・コスト効率(CPI)の一覧です。</p>
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <table class="members-table">
+                                <thead>
+                                    <tr>
+                                        <th>メンバー名</th>
+                                        <th>計画価値 (PV)</th>
+                                        <th>出来高 (EV)</th>
+                                        <th>実績コスト (AC)</th>
+                                        <th>スケジュール差異 (SV)</th>
+                                        <th>コスト差異 (CV)</th>
+                                        <th>進捗効率 (SPI)</th>
+                                        <th>コスト効率 (CPI)</th>
+                                        <th>ステータス</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="members-list-tbody">
+                                    <tr>
+                                        <td colspan="9" class="text-center">データを読み込んでいます...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- VIEW 2: Sync Settings & Status -->
+                <div id="view-sync" class="tab-view">
+                    <div class="sync-grid">
+                        <div class="panel sync-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-title"><i class="fa-solid fa-rotate"></i> Redmine 進捗データ手動同期</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="sync-form">
+                                    <div class="form-group">
+                                        <label for="sync-date" class="form-label-bold">同期対象日（日報投稿日）を指定</label>
+                                        <div class="input-group-inline">
+                                            <input type="date" id="sync-date" value="2026-06-04" min="2026-06-01" max="2026-07-10">
+                                            <button class="btn btn-primary" id="btn-run-sync">
+                                                <i class="fa-solid fa-play"></i> <span>同期を実行</span>
+                                            </button>
+                                        </div>
+                                        <span class="help-text">指定した日付に投稿された日報ニュースのみを取り込んでEVM集計を更新します。日付を空にした場合は、未処理の全日報を順に一括処理します。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel console-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-title"><i class="fa-solid fa-terminal"></i> 実行ログ出力</h3>
+                                <button class="btn-clear" id="btn-clear-log"><i class="fa-solid fa-trash-can"></i> ログクリア</button>
+                            </div>
+                            <div class="panel-body console-body">
+                                <pre id="console-output">同期処理を実行すると、ここにシステムログがリアルタイムに表示されます...</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 3: Member Work Logs & Report History -->
+                <div id="view-work-logs" class="tab-view">
+                    <div class="work-logs-layout">
+                        <!-- Matrix Table Panel -->
+                        <div class="panel matrix-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-title"><i class="fa-solid fa-calendar-days"></i> メンバー別・日別稼働実績 (h)</h3>
+                                <p class="panel-subtitle">2026年6月1日以降の各日における稼働実績時間の推移です。</p>
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="matrix-table" id="matrix-work-table">
+                                    <thead>
+                                        <!-- Dynamic Header (Dates) -->
+                                    </thead>
+                                    <tbody id="matrix-work-tbody">
+                                        <!-- Dynamic Rows (Members) -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Issue Progress Panel -->
+                        <div class="panel progress-timeline-panel">
+                            <div class="panel-header">
+                                <h3 class="panel-title"><i class="fa-solid fa-list-check"></i> 担当者別・チケット進捗推移 (%)</h3>
+                                <p class="panel-subtitle">メンバーが担当する各チケットの進捗率の日別推移です。クリックでアコーディオンを開閉できます。</p>
+                            </div>
+                            <div class="panel-body accordion-body" id="accordion-progress-container">
+                                <!-- Dynamic Render of Accordions -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+</html>
