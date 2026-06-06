@@ -1,0 +1,685 @@
+2026-06-06 10:06:24,268 [INFO] EVM Dashboard Server is running at http://localhost:8000
+2026-06-06 10:06:24,268 [INFO] Serving files from: C:\Users\temp_admin\.vscode\workspace\evm_dashboard
+2026-06-06 10:06:24,269 [INFO] PID: 25016
+2026-06-06 10:06:46,186 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 200 -
+2026-06-06 10:06:46,304 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708006193 HTTP/1.1" 500 -
+2026-06-06 10:06:46,447 [INFO] Sync requested for date: None
+2026-06-06 10:06:46,548 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 10:06:46,548 [INFO] 127.0.0.1 - "GET /favicon.ico HTTP/1.1" 404 -
+2026-06-06 10:06:47,432 [ERROR] Sync script error: Traceback (most recent call last):
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 850, in <module>
+    calculate_evm_from_db(args.date)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 506, in calculate_evm_from_db
+    print(f"    \u26a0 警告: 予定工数が未設定です！")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\u26a0' in position 4: illegal multibyte sequence
+
+2026-06-06 10:06:47,432 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 500 -
+2026-06-06 10:07:08,425 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:07:08,430 [INFO] Sync requested for date: None
+2026-06-06 10:07:08,698 [ERROR] EVM data API error: 'cp932' codec can't encode character '\u26a0' in position 4: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\server.py", line 73, in _handle_evm_data
+    evm_data = redmine_evm_tool.calculate_evm_from_db()
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 506, in calculate_evm_from_db
+    print(f"    ⚠ 警告: 予定工数が未設定です！")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\u26a0' in position 4: illegal multibyte sequence
+2026-06-06 10:07:08,757 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708028428 HTTP/1.1" 500 -
+2026-06-06 10:07:09,301 [ERROR] Sync script error: Traceback (most recent call last):
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 850, in <module>
+    calculate_evm_from_db(args.date)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 506, in calculate_evm_from_db
+    print(f"    \u26a0 警告: 予定工数が未設定です！")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\u26a0' in position 4: illegal multibyte sequence
+
+2026-06-06 10:07:09,302 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 500 -
+2026-06-06 10:07:39,038 [INFO] Sync requested for date: 2026-06-06
+2026-06-06 10:07:41,694 [ERROR] Sync script error: Traceback (most recent call last):
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 850, in <module>
+    calculate_evm_from_db(args.date)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 506, in calculate_evm_from_db
+    print(f"    \u26a0 警告: 予定工数が未設定です！")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\u26a0' in position 4: illegal multibyte sequence
+
+2026-06-06 10:07:41,694 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 500 -
+2026-06-06 10:11:27,888 [INFO] EVM Dashboard Server is running at http://localhost:8000
+2026-06-06 10:11:27,888 [INFO] Serving files from: C:\Users\temp_admin\.vscode\workspace\evm_dashboard
+2026-06-06 10:11:27,888 [INFO] PID: 11216
+2026-06-06 10:11:37,933 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:11:37,936 [INFO] Sync requested for date: None
+2026-06-06 10:11:38,246 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708297935 HTTP/1.1" 200 -
+2026-06-06 10:11:38,831 [INFO] Sync completed successfully
+2026-06-06 10:11:38,831 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:11:39,161 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708298836 HTTP/1.1" 200 -
+2026-06-06 10:11:51,265 [INFO] Sync requested for date: None
+2026-06-06 10:11:53,859 [INFO] Sync completed successfully
+2026-06-06 10:11:53,859 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:11:54,187 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708313861 HTTP/1.1" 200 -
+2026-06-06 10:12:31,669 [INFO] Sync requested for date: 2026-06-06
+2026-06-06 10:12:32,502 [INFO] Sync completed successfully
+2026-06-06 10:12:32,503 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:12:32,839 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708352508 HTTP/1.1" 200 -
+2026-06-06 10:13:09,918 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:13:11,125 [INFO] Sync completed successfully
+2026-06-06 10:13:11,125 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:13:11,454 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708391130 HTTP/1.1" 200 -
+2026-06-06 10:13:22,168 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:13:27,111 [INFO] Sync completed successfully
+2026-06-06 10:13:27,111 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:13:27,441 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708407114 HTTP/1.1" 200 -
+2026-06-06 10:13:41,330 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:13:41,615 [INFO] Sync requested for date: None
+2026-06-06 10:13:41,893 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708421343 HTTP/1.1" 200 -
+2026-06-06 10:13:49,263 [INFO] Sync completed successfully
+2026-06-06 10:13:49,263 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:14:18,058 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708429266 HTTP/1.1" 200 -
+2026-06-06 10:14:24,763 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:14:27,423 [INFO] Sync completed successfully
+2026-06-06 10:14:27,423 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:14:27,960 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708467427 HTTP/1.1" 200 -
+2026-06-06 10:14:37,500 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:14:37,514 [INFO] Sync requested for date: None
+2026-06-06 10:14:37,834 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708477511 HTTP/1.1" 200 -
+2026-06-06 10:14:38,560 [INFO] Sync completed successfully
+2026-06-06 10:14:38,561 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:14:38,896 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708478566 HTTP/1.1" 200 -
+2026-06-06 10:14:48,485 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:14:49,687 [INFO] Sync completed successfully
+2026-06-06 10:14:49,687 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:14:50,020 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708489691 HTTP/1.1" 200 -
+2026-06-06 10:14:59,391 [INFO] Sync requested for date: None
+2026-06-06 10:14:59,710 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708499385 HTTP/1.1" 200 -
+2026-06-06 10:15:00,333 [INFO] Sync completed successfully
+2026-06-06 10:15:00,333 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:15:00,666 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708500338 HTTP/1.1" 200 -
+2026-06-06 10:15:09,373 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:15:26,100 [INFO] Sync completed successfully
+2026-06-06 10:15:26,100 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:15:26,426 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708526103 HTTP/1.1" 200 -
+2026-06-06 10:15:45,944 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:15:45,954 [INFO] Sync requested for date: None
+2026-06-06 10:15:46,293 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708545951 HTTP/1.1" 200 -
+2026-06-06 10:15:47,172 [INFO] Sync completed successfully
+2026-06-06 10:15:47,172 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:15:47,548 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708547176 HTTP/1.1" 200 -
+2026-06-06 10:16:01,649 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:16:03,577 [INFO] Sync completed successfully
+2026-06-06 10:16:03,577 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:16:06,934 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708563580 HTTP/1.1" 200 -
+2026-06-06 10:16:24,561 [INFO] Sync requested for date: None
+2026-06-06 10:16:24,593 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708584554 HTTP/1.1" 200 -
+2026-06-06 10:16:25,656 [INFO] Sync completed successfully
+2026-06-06 10:16:25,656 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:16:25,989 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708585659 HTTP/1.1" 200 -
+2026-06-06 10:16:34,634 [INFO] Sync requested for date: 2026-06-26
+2026-06-06 10:16:35,572 [INFO] Sync completed successfully
+2026-06-06 10:16:35,573 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:16:35,902 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708595575 HTTP/1.1" 200 -
+2026-06-06 10:16:54,074 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:16:55,051 [INFO] Sync completed successfully
+2026-06-06 10:16:55,052 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:16:55,380 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708615055 HTTP/1.1" 200 -
+2026-06-06 10:17:06,348 [INFO] Sync requested for date: 2026-02-04
+2026-06-06 10:17:07,738 [INFO] Sync completed successfully
+2026-06-06 10:17:07,738 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:17:08,075 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708627741 HTTP/1.1" 200 -
+2026-06-06 10:17:15,627 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:17:15,794 [INFO] Sync requested for date: None
+2026-06-06 10:17:16,160 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708635697 HTTP/1.1" 200 -
+2026-06-06 10:17:31,391 [INFO] Sync completed successfully
+2026-06-06 10:17:31,391 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:17:31,842 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708651394 HTTP/1.1" 200 -
+2026-06-06 10:17:37,415 [INFO] Sync requested for date: 2024-06-06
+2026-06-06 10:17:52,183 [INFO] Sync completed successfully
+2026-06-06 10:17:52,183 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:17:52,508 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708672186 HTTP/1.1" 200 -
+2026-06-06 10:17:55,387 [INFO] Sync requested for date: None
+2026-06-06 10:17:55,703 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708675384 HTTP/1.1" 200 -
+2026-06-06 10:17:56,287 [INFO] Sync completed successfully
+2026-06-06 10:17:56,287 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:17:56,623 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708676289 HTTP/1.1" 200 -
+2026-06-06 10:18:07,808 [INFO] Sync requested for date: 2024-06-06
+2026-06-06 10:18:08,725 [INFO] Sync completed successfully
+2026-06-06 10:18:08,725 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:18:09,052 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708688728 HTTP/1.1" 200 -
+2026-06-06 10:18:41,296 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:18:41,300 [INFO] Sync requested for date: None
+2026-06-06 10:18:41,724 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708721298 HTTP/1.1" 200 -
+2026-06-06 10:19:07,164 [INFO] Sync completed successfully
+2026-06-06 10:19:07,164 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:19:17,240 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708747195 HTTP/1.1" 200 -
+2026-06-06 10:19:20,136 [INFO] Sync requested for date: 2026-06-26
+2026-06-06 10:19:22,592 [INFO] Sync completed successfully
+2026-06-06 10:19:22,592 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:19:22,919 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708762595 HTTP/1.1" 200 -
+2026-06-06 10:20:32,916 [INFO] 127.0.0.1 - "GET /api/evm-data HTTP/1.1" 200 -
+2026-06-06 10:20:40,716 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:20:40,727 [INFO] Sync requested for date: None
+2026-06-06 10:20:41,052 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708840724 HTTP/1.1" 200 -
+2026-06-06 10:20:41,638 [INFO] Sync completed successfully
+2026-06-06 10:20:41,638 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:20:41,972 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708841642 HTTP/1.1" 200 -
+2026-06-06 10:22:15,610 [INFO] EVM Dashboard Server is running at http://localhost:8000
+2026-06-06 10:22:15,677 [INFO] Serving files from: C:\Users\temp_admin\.vscode\workspace\evm_dashboard
+2026-06-06 10:22:15,677 [INFO] PID: 10052
+2026-06-06 10:22:50,156 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 200 -
+2026-06-06 10:22:50,184 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708970162 HTTP/1.1" 200 -
+2026-06-06 10:22:50,419 [INFO] Sync requested for date: None
+2026-06-06 10:22:51,530 [INFO] Sync completed successfully
+2026-06-06 10:22:51,530 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:22:51,873 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708971534 HTTP/1.1" 200 -
+2026-06-06 10:23:14,297 [INFO] Sync requested for date: None
+2026-06-06 10:23:15,285 [INFO] Sync completed successfully
+2026-06-06 10:23:15,285 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:23:15,610 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780708995289 HTTP/1.1" 200 -
+2026-06-06 10:23:28,265 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:23:28,539 [INFO] Sync requested for date: None
+2026-06-06 10:23:28,619 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709008279 HTTP/1.1" 200 -
+2026-06-06 10:23:29,885 [INFO] Sync completed successfully
+2026-06-06 10:23:29,886 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:23:30,225 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709009890 HTTP/1.1" 200 -
+2026-06-06 10:23:38,094 [INFO] Sync requested for date: None
+2026-06-06 10:23:39,233 [INFO] Sync completed successfully
+2026-06-06 10:23:39,234 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:23:39,569 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709019238 HTTP/1.1" 200 -
+2026-06-06 10:23:55,330 [INFO] Sync requested for date: None
+2026-06-06 10:23:56,723 [INFO] Sync completed successfully
+2026-06-06 10:23:56,723 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:23:57,053 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709036729 HTTP/1.1" 200 -
+2026-06-06 10:24:07,149 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:24:07,427 [INFO] Sync requested for date: None
+2026-06-06 10:24:07,491 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709047160 HTTP/1.1" 200 -
+2026-06-06 10:24:08,760 [INFO] Sync completed successfully
+2026-06-06 10:24:08,761 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:24:09,101 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709048765 HTTP/1.1" 200 -
+2026-06-06 10:24:22,820 [INFO] Sync requested for date: None
+2026-06-06 10:24:23,929 [INFO] Sync completed successfully
+2026-06-06 10:24:23,929 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:24:24,261 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709063932 HTTP/1.1" 200 -
+2026-06-06 10:24:37,643 [INFO] Sync requested for date: None
+2026-06-06 10:24:38,517 [INFO] Sync completed successfully
+2026-06-06 10:24:38,517 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:24:38,841 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709078521 HTTP/1.1" 200 -
+2026-06-06 10:24:46,756 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 304 -
+2026-06-06 10:24:47,043 [INFO] Sync requested for date: None
+2026-06-06 10:24:47,090 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709086765 HTTP/1.1" 200 -
+2026-06-06 10:24:47,932 [INFO] Sync completed successfully
+2026-06-06 10:24:47,932 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:24:48,265 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709087933 HTTP/1.1" 200 -
+2026-06-06 10:24:58,701 [INFO] Sync requested for date: None
+2026-06-06 10:24:59,569 [INFO] Sync completed successfully
+2026-06-06 10:24:59,569 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:24:59,905 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709099572 HTTP/1.1" 200 -
+2026-06-06 10:25:12,028 [INFO] Sync requested for date: None
+2026-06-06 10:25:12,886 [INFO] Sync completed successfully
+2026-06-06 10:25:12,886 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:25:13,210 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709112890 HTTP/1.1" 200 -
+2026-06-06 10:25:23,805 [INFO] Sync requested for date: None
+2026-06-06 10:25:24,785 [INFO] Sync completed successfully
+2026-06-06 10:25:24,785 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:25:25,112 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709124790 HTTP/1.1" 200 -
+2026-06-06 10:25:59,493 [INFO] EVM Dashboard Server is running at http://localhost:8000
+2026-06-06 10:25:59,493 [INFO] Serving files from: C:\Users\temp_admin\.vscode\workspace\evm_dashboard
+2026-06-06 10:25:59,493 [INFO] PID: 24216
+2026-06-06 10:26:34,171 [INFO] Sync requested for date: None
+2026-06-06 10:26:35,032 [INFO] Sync completed successfully
+2026-06-06 10:26:35,032 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:26:35,095 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709195045 HTTP/1.1" 200 -
+2026-06-06 10:27:29,823 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 10:27:30,675 [INFO] Sync completed successfully
+2026-06-06 10:27:30,675 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:27:30,695 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709250679 HTTP/1.1" 200 -
+2026-06-06 10:28:00,961 [INFO] 127.0.0.1 - "GET /index.html?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 10:28:00,980 [INFO] 127.0.0.1 - "GET /index.css?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 10:28:01,225 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 10:28:01,547 [INFO] Sync requested for date: None
+2026-06-06 10:28:01,564 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709281229 HTTP/1.1" 200 -
+2026-06-06 10:28:02,488 [INFO] Sync completed successfully
+2026-06-06 10:28:02,489 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:28:02,512 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709282491 HTTP/1.1" 200 -
+2026-06-06 10:28:43,189 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 10:28:43,989 [INFO] Sync completed successfully
+2026-06-06 10:28:43,990 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:28:44,010 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709323993 HTTP/1.1" 200 -
+2026-06-06 10:31:07,835 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 10:31:07,866 [INFO] 127.0.0.1 - "GET /index.css?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 10:31:08,094 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 10:31:08,409 [INFO] Sync requested for date: None
+2026-06-06 10:31:08,438 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709468096 HTTP/1.1" 200 -
+2026-06-06 10:31:08,729 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 10:31:08,730 [INFO] 127.0.0.1 - "GET /favicon.ico HTTP/1.1" 404 -
+2026-06-06 10:31:09,187 [INFO] Sync completed successfully
+2026-06-06 10:31:09,187 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:31:09,215 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709469188 HTTP/1.1" 200 -
+2026-06-06 10:39:17,138 [INFO] Sync requested for date: None
+2026-06-06 10:39:17,873 [INFO] Sync completed successfully
+2026-06-06 10:39:17,873 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:39:28,835 [INFO] 127.0.0.1 - "GET /index.html?v=1.0.1 HTTP/1.1" 304 -
+2026-06-06 10:39:28,862 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 304 -
+2026-06-06 10:39:29,114 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709969013 HTTP/1.1" 200 -
+2026-06-06 10:39:29,329 [INFO] Sync requested for date: None
+2026-06-06 10:39:29,377 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 10:39:29,377 [INFO] 127.0.0.1 - "GET /favicon.ico HTTP/1.1" 404 -
+2026-06-06 10:39:30,178 [INFO] Sync completed successfully
+2026-06-06 10:39:30,179 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:39:30,506 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780709970181 HTTP/1.1" 200 -
+2026-06-06 10:57:47,601 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 10:57:48,293 [INFO] Sync completed successfully
+2026-06-06 10:57:48,293 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 10:57:48,322 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780711068304 HTTP/1.1" 200 -
+2026-06-06 11:14:11,326 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 11:14:11,389 [INFO] 127.0.0.1 - "GET /index.css?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 11:14:11,578 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 11:14:11,659 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712051581 HTTP/1.1" 500 -
+2026-06-06 11:14:11,889 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 11:14:11,889 [INFO] 127.0.0.1 - "GET /favicon.ico HTTP/1.1" 404 -
+2026-06-06 11:14:47,911 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 11:14:49,230 [INFO] Sync completed successfully
+2026-06-06 11:14:49,230 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 11:14:49,569 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712089242 HTTP/1.1" 200 -
+2026-06-06 11:18:58,866 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 11:19:00,303 [INFO] Sync completed successfully
+2026-06-06 11:19:00,303 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 11:19:00,318 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712340306 HTTP/1.1" 200 -
+2026-06-06 11:19:28,257 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 11:19:29,587 [INFO] Sync completed successfully
+2026-06-06 11:19:29,587 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 11:19:29,609 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712369589 HTTP/1.1" 200 -
+2026-06-06 11:19:48,803 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 11:19:50,281 [INFO] Sync completed successfully
+2026-06-06 11:19:50,281 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 11:19:50,313 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712390285 HTTP/1.1" 200 -
+2026-06-06 11:20:08,662 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 11:20:09,900 [INFO] Sync completed successfully
+2026-06-06 11:20:09,900 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 11:20:09,928 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712409905 HTTP/1.1" 200 -
+2026-06-06 11:20:47,211 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712446880 HTTP/1.1" 200 -
+2026-06-06 11:20:48,527 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780712448507 HTTP/1.1" 200 -
+2026-06-06 16:53:04,079 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 16:53:04,115 [INFO] 127.0.0.1 - "GET /index.css?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 16:53:04,329 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 16:53:04,669 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732384334 HTTP/1.1" 500 -
+2026-06-06 16:53:15,964 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 16:53:17,414 [INFO] Sync completed successfully
+2026-06-06 16:53:17,414 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 16:53:17,775 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732397428 HTTP/1.1" 200 -
+2026-06-06 16:55:43,347 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 16:55:43,380 [INFO] 127.0.0.1 - "GET /index.css?v=1.0.1 HTTP/1.1" 304 -
+2026-06-06 16:55:43,607 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 16:55:43,935 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 16:55:43,935 [INFO] 127.0.0.1 - "GET /favicon.ico HTTP/1.1" 404 -
+2026-06-06 16:55:43,963 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732543616 HTTP/1.1" 200 -
+2026-06-06 16:55:49,708 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732549390 HTTP/1.1" 200 -
+2026-06-06 16:58:03,073 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 304 -
+2026-06-06 16:58:03,188 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732683178 HTTP/1.1" 500 -
+2026-06-06 16:58:20,737 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 16:58:22,281 [INFO] Sync completed successfully
+2026-06-06 16:58:22,281 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 16:58:22,625 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732702295 HTTP/1.1" 200 -
+2026-06-06 16:59:39,847 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 16:59:41,306 [INFO] Sync completed successfully
+2026-06-06 16:59:41,306 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 16:59:41,368 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732781311 HTTP/1.1" 200 -
+2026-06-06 17:00:35,657 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 17:00:36,998 [INFO] Sync completed successfully
+2026-06-06 17:00:36,998 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:00:37,015 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780732837001 HTTP/1.1" 200 -
+2026-06-06 17:05:17,870 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 304 -
+2026-06-06 17:05:17,916 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733117891 HTTP/1.1" 500 -
+2026-06-06 17:05:25,999 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 17:05:27,245 [INFO] Sync completed successfully
+2026-06-06 17:05:27,245 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:05:27,575 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733127249 HTTP/1.1" 200 -
+2026-06-06 17:07:11,617 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 17:07:12,995 [INFO] Sync completed successfully
+2026-06-06 17:07:12,995 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:07:13,021 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733232999 HTTP/1.1" 200 -
+2026-06-06 17:07:27,477 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 17:07:28,974 [INFO] Sync completed successfully
+2026-06-06 17:07:28,974 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:07:29,006 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733248979 HTTP/1.1" 200 -
+2026-06-06 17:07:37,388 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 17:07:38,880 [INFO] Sync completed successfully
+2026-06-06 17:07:38,880 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:07:38,901 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733258886 HTTP/1.1" 200 -
+2026-06-06 17:07:51,928 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 17:07:53,236 [INFO] Sync completed successfully
+2026-06-06 17:07:53,236 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:07:53,255 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733273243 HTTP/1.1" 200 -
+2026-06-06 17:26:13,230 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734372921 HTTP/1.1" 200 -
+2026-06-06 17:26:22,464 [INFO] 127.0.0.1 - "GET /api/evm-data HTTP/1.1" 200 -
+2026-06-06 17:26:26,283 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780733117891 HTTP/1.1" 200 -
+2026-06-06 17:26:30,762 [INFO] 127.0.0.1 - "GET /api/evm-data?date=2026-06-06 HTTP/1.1" 200 -
+2026-06-06 17:26:35,506 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734395489 HTTP/1.1" 200 -
+2026-06-06 17:26:48,736 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734408723 HTTP/1.1" 200 -
+2026-06-06 17:26:51,639 [INFO] 127.0.0.1 - "GET /app.js HTTP/1.1" 200 -
+2026-06-06 17:27:20,702 [INFO] 127.0.0.1 - "GET /server.py HTTP/1.1" 200 -
+2026-06-06 17:27:30,244 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734450226 HTTP/1.1" 200 -
+2026-06-06 17:27:50,288 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734470270 HTTP/1.1" 200 -
+2026-06-06 17:28:43,308 [INFO] EVM Dashboard Server is running at http://localhost:8000
+2026-06-06 17:28:43,309 [INFO] Serving files from: C:\Users\temp_admin\.vscode\workspace\evm_dashboard
+2026-06-06 17:28:43,309 [INFO] PID: 28252
+2026-06-06 17:28:56,061 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734535724 HTTP/1.1" 200 -
+2026-06-06 17:28:59,840 [INFO] 127.0.0.1 - "GET /?t=123456 HTTP/1.1" 200 -
+2026-06-06 17:28:59,889 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734539860 HTTP/1.1" 200 -
+2026-06-06 17:29:10,107 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734550087 HTTP/1.1" 200 -
+2026-06-06 17:29:18,806 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734558790 HTTP/1.1" 200 -
+2026-06-06 17:29:21,583 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734561256 HTTP/1.1" 200 -
+2026-06-06 17:29:26,030 [INFO] 127.0.0.1 - "GET /?t=1234567 HTTP/1.1" 200 -
+2026-06-06 17:29:26,351 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734566049 HTTP/1.1" 200 -
+2026-06-06 17:29:31,495 [INFO] 127.0.0.1 - "GET /?date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:29:31,541 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734571514 HTTP/1.1" 200 -
+2026-06-06 17:29:58,800 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734598782 HTTP/1.1" 200 -
+2026-06-06 17:30:03,448 [INFO] 127.0.0.1 - "GET /app.js?t=12345 HTTP/1.1" 200 -
+2026-06-06 17:30:09,050 [INFO] 127.0.0.1 - "GET /?t=12345678 HTTP/1.1" 200 -
+2026-06-06 17:30:09,096 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780734609070 HTTP/1.1" 200 -
+2026-06-06 17:46:26,905 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 17:46:40,794 [INFO] 127.0.0.1 - "GET /?t=9999 HTTP/1.1" 200 -
+2026-06-06 17:46:40,819 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 17:46:41,131 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735600982 HTTP/1.1" 200 -
+2026-06-06 17:46:49,927 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609594 HTTP/1.1" 200 -
+2026-06-06 17:46:49,990 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609634&date=0020-06-05 HTTP/1.1" 200 -
+2026-06-06 17:46:50,006 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609650&date=20260-06-05 HTTP/1.1" 200 -
+2026-06-06 17:46:50,020 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609629&date=0002-06-05 HTTP/1.1" 200 -
+2026-06-06 17:46:50,030 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609645&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:46:50,031 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609641&date=0202-06-05 HTTP/1.1" 200 -
+2026-06-06 17:46:50,255 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609657&date=202606-06-05 HTTP/1.1" 200 -
+2026-06-06 17:46:50,314 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609660 HTTP/1.1" 200 -
+2026-06-06 17:46:50,332 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735609666&date=202606-01-05 HTTP/1.1" 200 -
+2026-06-06 17:47:02,304 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735622287 HTTP/1.1" 200 -
+2026-06-06 17:47:04,695 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735624359 HTTP/1.1" 200 -
+2026-06-06 17:47:04,699 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735624375&date=2026-02-26 HTTP/1.1" 200 -
+2026-06-06 17:47:04,701 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735624368&date=2026-02-02 HTTP/1.1" 200 -
+2026-06-06 17:47:04,719 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735624357&date=2026-02-05 HTTP/1.1" 200 -
+2026-06-06 17:47:06,597 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735626579 HTTP/1.1" 200 -
+2026-06-06 17:47:06,909 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735626587&date=2026-02-06 HTTP/1.1" 200 -
+2026-06-06 17:47:09,665 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735629326&date=2026-02-01 HTTP/1.1" 200 -
+2026-06-06 17:47:09,682 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735629317 HTTP/1.1" 200 -
+2026-06-06 17:47:18,543 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638524 HTTP/1.1" 200 -
+2026-06-06 17:47:18,913 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638575&date=0020-06-05 HTTP/1.1" 200 -
+2026-06-06 17:47:18,916 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638584&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:47:18,919 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638594&date=202606-06-05 HTTP/1.1" 200 -
+2026-06-06 17:47:18,930 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638591&date=20260-06-05 HTTP/1.1" 200 -
+2026-06-06 17:47:18,943 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638572&date=0002-06-05 HTTP/1.1" 200 -
+2026-06-06 17:47:18,962 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638577&date=0202-06-05 HTTP/1.1" 200 -
+2026-06-06 17:47:19,264 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638610&date=202606-01-05 HTTP/1.1" 200 -
+2026-06-06 17:47:19,277 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735638604 HTTP/1.1" 200 -
+2026-06-06 17:47:52,200 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 17:47:54,103 [INFO] Sync completed successfully
+2026-06-06 17:47:54,104 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:47:54,135 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735674117&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:14,327 [INFO] Sync requested for date: None
+2026-06-06 17:48:18,227 [INFO] Sync completed successfully
+2026-06-06 17:48:18,227 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:48:18,253 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735698234&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:30,181 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709841 HTTP/1.1" 200 -
+2026-06-06 17:48:30,238 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709865&date=0002-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:30,240 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709876&date=0202-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:30,253 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709872&date=0020-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:30,257 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709882&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:30,282 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709954 HTTP/1.1" 200 -
+2026-06-06 17:48:30,534 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735709958&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:48:30,593 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735710046&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:48:30,617 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735710041 HTTP/1.1" 200 -
+2026-06-06 17:48:36,729 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716705 HTTP/1.1" 200 -
+2026-06-06 17:48:37,119 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716759&date=0002-06-05 HTTP/1.1" 200 -
+2026-06-06 17:48:37,149 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716774&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:48:37,149 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716763&date=0020-06-05 HTTP/1.1" 200 -
+2026-06-06 17:48:37,153 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716770&date=0202-06-05 HTTP/1.1" 200 -
+2026-06-06 17:48:37,169 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716843 HTTP/1.1" 200 -
+2026-06-06 17:48:37,194 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716849&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:48:37,447 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716901 HTTP/1.1" 200 -
+2026-06-06 17:48:37,475 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780735716907&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:50:39,544 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 17:50:39,544 [INFO] 127.0.0.1 - "HEAD /api/evm-data?date=2026-06-05 HTTP/1.1" 404 -
+2026-06-06 17:50:39,568 [INFO] 127.0.0.1 - "GET /api/evm-data?date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:54:03,220 [INFO] 127.0.0.1 - code 404, message File not found
+2026-06-06 17:54:03,221 [INFO] 127.0.0.1 - "HEAD /api/evm-data?date=2026-06-05 HTTP/1.1" 404 -
+2026-06-06 17:54:03,244 [INFO] 127.0.0.1 - "GET /api/evm-data?date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:54:18,251 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 17:54:18,266 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 17:54:18,527 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736058276 HTTP/1.1" 200 -
+2026-06-06 17:54:49,067 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 17:54:49,089 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 17:54:49,364 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736089096 HTTP/1.1" 200 -
+2026-06-06 17:55:06,613 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736106276 HTTP/1.1" 200 -
+2026-06-06 17:55:06,637 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736106313&date=0006-06-05 HTTP/1.1" 200 -
+2026-06-06 17:55:06,707 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736106370 HTTP/1.1" 200 -
+2026-06-06 17:55:06,735 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736106393&date=0006-03-05 HTTP/1.1" 200 -
+2026-06-06 17:56:30,655 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 17:56:30,675 [INFO] 127.0.0.1 - "GET /app.js?v=1.0.1 HTTP/1.1" 200 -
+2026-06-06 17:56:30,927 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736190680 HTTP/1.1" 500 -
+2026-06-06 17:56:41,880 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 17:56:43,201 [INFO] Sync completed successfully
+2026-06-06 17:56:43,201 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:56:43,230 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736203205&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:57:04,242 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 17:57:05,654 [INFO] Sync completed successfully
+2026-06-06 17:57:05,655 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:57:05,672 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736225659&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 17:57:19,440 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 17:57:20,929 [INFO] Sync completed successfully
+2026-06-06 17:57:20,929 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:57:20,959 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736240935&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 17:57:26,361 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 17:57:28,002 [INFO] Sync completed successfully
+2026-06-06 17:57:28,002 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:57:28,032 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736248009&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 17:57:42,673 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 17:57:44,013 [INFO] Sync completed successfully
+2026-06-06 17:57:44,013 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 17:57:44,049 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736264020&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 17:57:52,667 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736272335&date=2026-06-06 HTTP/1.1" 200 -
+2026-06-06 17:57:55,403 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736275370&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 17:57:58,308 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736277972&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 17:58:01,119 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736281102&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 17:58:07,349 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736287003&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 17:58:10,534 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736290514&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:00:15,873 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736415548&date=2026-06-06 HTTP/1.1" 200 -
+2026-06-06 18:00:17,812 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736417780&date=2026-06-08 HTTP/1.1" 200 -
+2026-06-06 18:00:21,324 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736421004&date=2026-06-09 HTTP/1.1" 200 -
+2026-06-06 18:00:24,163 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780736424145&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:24:48,531 [INFO] EVM Dashboard Server is running at http://localhost:8000
+2026-06-06 18:24:48,531 [INFO] Serving files from: C:\Users\temp_admin\.vscode\workspace\evm_dashboard
+2026-06-06 18:24:48,531 [INFO] PID: 28704
+2026-06-06 18:25:14,867 [INFO] 127.0.0.1 - "GET /api/evm-data?date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:25:38,359 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:25:38,392 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:25:38,606 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:25:38,927 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737938608 HTTP/1.1" 200 -
+2026-06-06 18:25:51,526 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951508&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 18:25:51,892 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951519&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 18:25:51,897 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951532 HTTP/1.1" 200 -
+2026-06-06 18:25:51,913 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951524&date=2026-06-26 HTTP/1.1" 200 -
+2026-06-06 18:25:51,928 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951515&date=2026-06-20 HTTP/1.1" 200 -
+2026-06-06 18:25:51,943 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951552&date=2026-06-06 HTTP/1.1" 200 -
+2026-06-06 18:25:51,947 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951566 HTTP/1.1" 200 -
+2026-06-06 18:25:52,239 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737951571&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 18:26:14,105 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:26:14,125 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:26:14,369 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:26:14,689 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737974372 HTTP/1.1" 200 -
+2026-06-06 18:26:29,730 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:26:30,050 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:26:30,050 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:26:30,315 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780737990062 HTTP/1.1" 200 -
+2026-06-06 18:26:53,234 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:26:53,540 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:26:53,540 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:26:53,818 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738013552 HTTP/1.1" 200 -
+2026-06-06 18:28:44,961 [INFO] 127.0.0.1 - "GET /?t=fresh HTTP/1.1" 200 -
+2026-06-06 18:28:44,979 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:28:45,223 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:28:45,544 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738125226 HTTP/1.1" 200 -
+2026-06-06 18:29:11,938 [INFO] 127.0.0.1 - "GET /?t=fresh HTTP/1.1" 200 -
+2026-06-06 18:29:12,248 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:29:12,248 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:29:12,530 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738152260 HTTP/1.1" 200 -
+2026-06-06 18:29:41,307 [INFO] Sync requested for date: None
+2026-06-06 18:29:44,839 [INFO] Sync completed successfully
+2026-06-06 18:29:44,840 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:29:45,173 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738184842&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:31:45,513 [INFO] 127.0.0.1 - "GET /api/evm-data HTTP/1.1" 500 -
+2026-06-06 18:32:00,333 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:32:00,349 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:32:00,597 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:32:00,916 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738320599 HTTP/1.1" 500 -
+2026-06-06 18:32:18,776 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:32:19,097 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:32:19,097 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:32:19,348 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738339107 HTTP/1.1" 500 -
+2026-06-06 18:33:08,444 [INFO] 127.0.0.1 - "GET /api/evm-data HTTP/1.1" 200 -
+2026-06-06 18:33:13,127 [INFO] 127.0.0.1 - "GET /?t=fresh HTTP/1.1" 200 -
+2026-06-06 18:33:13,431 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:33:13,477 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:33:13,795 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738393479 HTTP/1.1" 200 -
+2026-06-06 18:34:11,166 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 18:34:12,520 [ERROR] Sync script error: Traceback (most recent call last):
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 1025, in <module>
+    calculate_evm_from_db(args.date)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 620, in calculate_evm_from_db
+    today = datetime.now()
+            ^^^^^^^^
+UnboundLocalError: cannot access local variable 'datetime' where it is not associated with a value
+
+2026-06-06 18:34:12,520 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 500 -
+2026-06-06 18:35:05,158 [INFO] 127.0.0.1 - "GET /?t=fresh HTTP/1.1" 200 -
+2026-06-06 18:35:05,171 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:35:05,407 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:35:05,725 [ERROR] EVM data API error: cannot access local variable 'datetime' where it is not associated with a value
+Traceback (most recent call last):
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\server.py", line 90, in _handle_evm_data
+    evm_data = redmine_evm_tool.calculate_evm_from_db(target_date)
+  File "C:\Users\temp_admin\.vscode\workspace\evm_dashboard\redmine_evm_tool.py", line 620, in calculate_evm_from_db
+    today = datetime.now()
+            ^^^^^^^^
+UnboundLocalError: cannot access local variable 'datetime' where it is not associated with a value
+2026-06-06 18:35:05,726 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738505409 HTTP/1.1" 500 -
+2026-06-06 18:35:40,785 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 18:35:40,812 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:35:41,035 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:35:41,426 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738541037 HTTP/1.1" 200 -
+2026-06-06 18:35:47,507 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 18:35:48,917 [INFO] Sync completed successfully
+2026-06-06 18:35:48,918 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:35:49,245 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738548922&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 18:36:39,223 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 18:36:40,645 [INFO] Sync completed successfully
+2026-06-06 18:36:40,645 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:36:40,990 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738600647&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 18:37:15,964 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 18:37:17,399 [INFO] Sync completed successfully
+2026-06-06 18:37:17,399 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:37:17,732 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738637401&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 18:37:38,460 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 18:37:40,054 [INFO] Sync completed successfully
+2026-06-06 18:37:40,054 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:37:40,416 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738660056&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 18:37:42,294 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 18:37:43,731 [INFO] Sync completed successfully
+2026-06-06 18:37:43,731 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:37:44,083 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780738663732&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:45:13,057 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:45:13,077 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:45:13,321 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:45:13,643 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739113325 HTTP/1.1" 200 -
+2026-06-06 18:45:39,782 [INFO] Sync requested for date: None
+2026-06-06 18:45:43,486 [INFO] Sync completed successfully
+2026-06-06 18:45:43,486 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:45:43,822 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739143504&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:47:01,524 [INFO] 127.0.0.1 - "GET /?t=fresh HTTP/1.1" 200 -
+2026-06-06 18:47:01,543 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:47:01,788 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:47:02,107 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739221790 HTTP/1.1" 200 -
+2026-06-06 18:47:49,539 [INFO] Sync requested for date: None
+2026-06-06 18:47:53,090 [INFO] Sync completed successfully
+2026-06-06 18:47:53,090 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:47:53,416 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739273093&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:48:49,372 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 18:48:49,397 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:48:49,637 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:48:49,953 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739329638 HTTP/1.1" 200 -
+2026-06-06 18:49:10,126 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 18:49:11,584 [INFO] Sync completed successfully
+2026-06-06 18:49:11,585 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:49:11,910 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739351586&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 18:49:14,901 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 18:49:16,344 [INFO] Sync completed successfully
+2026-06-06 18:49:16,344 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:49:16,686 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739356346&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 18:49:20,934 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 18:49:22,447 [INFO] Sync completed successfully
+2026-06-06 18:49:22,448 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:49:22,785 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739362449&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 18:49:24,958 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 18:49:26,624 [INFO] Sync completed successfully
+2026-06-06 18:49:26,624 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:49:26,962 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739366626&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 18:49:29,504 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 18:49:31,270 [INFO] Sync completed successfully
+2026-06-06 18:49:31,270 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:49:31,595 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739371271&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 18:51:45,840 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:51:45,858 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:51:46,087 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:51:46,413 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739506089 HTTP/1.1" 200 -
+2026-06-06 18:52:04,920 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:52:21,003 [INFO] 127.0.0.1 - "GET /index.css HTTP/1.1" 200 -
+2026-06-06 18:52:55,196 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:52:55,510 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:52:55,526 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:52:55,846 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739575528 HTTP/1.1" 200 -
+2026-06-06 18:54:49,943 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 18:54:49,972 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:54:50,196 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:54:50,526 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739690198 HTTP/1.1" 200 -
+2026-06-06 18:54:52,450 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 18:54:52,752 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:54:52,784 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:54:53,098 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739692785 HTTP/1.1" 200 -
+2026-06-06 18:57:22,357 [INFO] 127.0.0.1 - "GET / HTTP/1.1" 200 -
+2026-06-06 18:57:22,377 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:57:22,619 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:57:22,941 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739842621 HTTP/1.1" 200 -
+2026-06-06 18:58:02,290 [INFO] 127.0.0.1 - "GET /index.html HTTP/1.1" 200 -
+2026-06-06 18:58:02,318 [INFO] 127.0.0.1 - "GET /index.css?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:58:02,532 [INFO] 127.0.0.1 - "GET /app.js?v=2.0.0 HTTP/1.1" 200 -
+2026-06-06 18:58:02,860 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739882536 HTTP/1.1" 200 -
+2026-06-06 18:58:11,630 [INFO] Sync requested for date: 2026-06-01
+2026-06-06 18:58:13,037 [INFO] Sync completed successfully
+2026-06-06 18:58:13,037 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:58:13,364 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739893039&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 18:58:15,364 [INFO] Sync requested for date: 2026-06-02
+2026-06-06 18:58:16,759 [INFO] Sync completed successfully
+2026-06-06 18:58:16,759 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:58:17,083 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739896761&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 18:58:18,832 [INFO] Sync requested for date: 2026-06-03
+2026-06-06 18:58:20,321 [INFO] Sync completed successfully
+2026-06-06 18:58:20,321 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:58:20,667 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739900323&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 18:58:22,062 [INFO] Sync requested for date: 2026-06-04
+2026-06-06 18:58:23,612 [INFO] Sync completed successfully
+2026-06-06 18:58:23,612 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:58:23,953 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739903613&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 18:58:25,612 [INFO] Sync requested for date: 2026-06-05
+2026-06-06 18:58:26,986 [INFO] Sync completed successfully
+2026-06-06 18:58:26,986 [INFO] 127.0.0.1 - "POST /api/sync HTTP/1.1" 200 -
+2026-06-06 18:58:27,324 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780739906987&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 19:40:52,091 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742451765&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 19:40:59,262 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742459230&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 19:41:01,879 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742461547&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 19:41:04,195 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742464172&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 19:41:07,534 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742467189&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 19:41:09,227 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742469211&date=2026-06-02 HTTP/1.1" 200 -
+2026-06-06 19:41:11,077 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742470730&date=2026-06-03 HTTP/1.1" 200 -
+2026-06-06 19:41:12,448 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742472424&date=2026-06-04 HTTP/1.1" 200 -
+2026-06-06 19:41:14,547 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742474195&date=2026-06-05 HTTP/1.1" 200 -
+2026-06-06 19:46:01,256 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780742760933&date=2026-06-01 HTTP/1.1" 200 -
+2026-06-06 19:55:34,049 [INFO] 127.0.0.1 - "GET /api/evm-data?t=1780743333712&date=2026-06-05 HTTP/1.1" 200 -

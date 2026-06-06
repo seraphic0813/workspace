@@ -12,11 +12,9 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=2.0.0">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- EVM Data -->
-    <script src="evm_data.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -56,7 +54,17 @@
                     <h1 id="main-title">EVM プロジェクト進捗分析</h1>
                     <p class="subtitle" id="last-update-time">最終データ更新: 取得中...</p>
                 </div>
-                <div class="header-right">
+                <div class="header-right header-controls">
+                    <button class="btn-guide-trigger" id="btn-guide-trigger" title="EVM指標の読み方">
+                        <i class="fa-regular fa-circle-question"></i>
+                    </button>
+                    <div class="control-group display-date-group">
+                        <label for="display-date" class="control-label"><i class="fa-solid fa-calendar-day"></i> 表示基準日</label>
+                        <div class="date-picker-wrapper">
+                            <input type="date" id="display-date" class="date-picker-input">
+                            <span class="date-picker-icon"><i class="fa-regular fa-calendar"></i></span>
+                        </div>
+                    </div>
                     <button class="btn btn-primary" id="btn-sync">
                         <i class="fa-solid fa-arrows-rotate"></i>
                         <span>データを再読み込み</span>
@@ -68,7 +76,7 @@
             <div class="content-scroll-container">
                 <!-- VIEW 1: Dashboard -->
                 <div id="view-dashboard" class="tab-view active">
-                    <!-- KPI Section -->
+                    <!-- KPI Section - Row 1: Core Metrics -->
                     <section class="kpi-grid">
                         <!-- Progress Card -->
                         <div class="kpi-card progress-card">
@@ -81,6 +89,18 @@
                                 <div class="progress-bar-container">
                                     <div class="progress-bar-fill" id="kpi-progress-bar" style="width: 0%"></div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- BAC Card (Top) -->
+                        <div class="kpi-card" id="card-bac-top">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">BAC (総予算)</span>
+                                <h2 class="kpi-value" id="kpi-bac-top">0人日</h2>
+                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
                             </div>
                         </div>
 
@@ -108,15 +128,74 @@
                             </div>
                         </div>
 
-                        <!-- BAC/EAC Card -->
+                        <!-- AC / BAC Card -->
                         <div class="kpi-card">
                             <div class="card-icon-wrapper">
                                 <i class="fa-solid fa-calculator"></i>
                             </div>
                             <div class="kpi-info">
-                                <span class="kpi-label">現在の総実績工数 / 総予算</span>
-                                <h2 class="kpi-value"><span id="kpi-ac">0h</span> <span class="divider">/</span> <span id="kpi-bac" class="sub-val">0h</span></h2>
-                                <span class="kpi-status" id="status-sv-cv">SV: 0h | CV: 0h</span>
+                                <span class="kpi-label">現在の総実績工数 / 総予算 (人日)</span>
+                                <h2 class="kpi-value"><span id="kpi-ac">0</span> <span class="divider">/</span> <span id="kpi-bac" class="sub-val">0</span></h2>
+                                <span class="kpi-status" id="status-sv-cv">SV: 0 | CV: 0</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- KPI Section - Row 2: Forecast Metrics -->
+                    <section class="kpi-grid-forecast">
+                        <!-- ETC Card -->
+                        <div class="kpi-card" id="card-etc">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">ETC (残作業見積)</span>
+                                <h2 class="kpi-value" id="forecast-etc">0人日</h2>
+                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                            </div>
+                        </div>
+                        <!-- EAC Card -->
+                        <div class="kpi-card" id="card-eac">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-flag-checkered"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">EAC (完了時総コスト)</span>
+                                <h2 class="kpi-value" id="forecast-eac">0人日</h2>
+                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                            </div>
+                        </div>
+                        <!-- VAC Card -->
+                        <div class="kpi-card" id="card-vac">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">VAC (完了時コスト差異)</span>
+                                <h2 class="kpi-value" id="forecast-vac">0人日</h2>
+                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                            </div>
+                        </div>
+                        <!-- Planned End Date Card -->
+                        <div class="kpi-card" id="card-planned-end">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">計画完了日</span>
+                                <h2 class="kpi-value kpi-value-date" id="forecast-planned-end">-</h2>
+                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                            </div>
+                        </div>
+                        <!-- Forecast End Date Card -->
+                        <div class="kpi-card" id="card-forecast-end">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-forward-fast"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">完了見込み日</span>
+                                <h2 class="kpi-value kpi-value-date" id="forecast-forecast-end">-</h2>
+                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
                             </div>
                         </div>
                     </section>
@@ -131,40 +210,12 @@
                                     <span class="legend-dot pv"></span><span>PV: 計画</span>
                                     <span class="legend-dot ev"></span><span>EV: 出来高</span>
                                     <span class="legend-dot ac"></span><span>AC: 実績</span>
+                                    <span class="legend-dot ev-forecast"></span><span>EV予測</span>
+                                    <span class="legend-dot ac-forecast"></span><span>AC予測</span>
                                 </div>
                             </div>
                             <div class="panel-body chart-body">
                                 <canvas id="evmChart"></canvas>
-                            </div>
-                        </div>
-
-                        <!-- EVM Definition Panel -->
-                        <div class="panel info-panel">
-                            <div class="panel-header">
-                                <h3 class="panel-title"><i class="fa-solid fa-graduation-cap"></i> EVM 指標の読み方</h3>
-                            </div>
-                            <div class="panel-body info-body">
-                                <div class="info-item">
-                                    <div class="info-icon good"><i class="fa-solid fa-circle-check"></i></div>
-                                    <div class="info-text">
-                                        <strong>SPI/CPI ≧ 1.0 (良好)</strong>
-                                        <p>予定よりも進捗が早く、あるいは予算（工数）に余裕を持って稼働できています。</p>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="info-icon warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                                    <div class="info-text">
-                                        <strong>0.9 ≦ SPI/CPI < 1.0 (注意)</strong>
-                                        <p>わずかな遅れやコスト超過の傾向があります。タスクの調整が必要です。</p>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="info-icon danger"><i class="fa-solid fa-circle-xmark"></i></div>
-                                    <div class="info-text">
-                                        <strong>SPI/CPI < 0.9 (危険)</strong>
-                                        <p>深刻なスケジュール遅延、または工数の大幅超過が発生しています。対策が急務です。</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,7 +263,10 @@
                                     <div class="form-group">
                                         <label for="sync-date" class="form-label-bold">同期対象日（日報投稿日）を指定</label>
                                         <div class="input-group-inline">
-                                            <input type="date" id="sync-date" value="2026-06-04" min="2026-06-01" max="2026-07-10">
+                                            <div class="date-picker-wrapper sync-date-wrapper">
+                                                <input type="date" id="sync-date" class="date-picker-input">
+                                                <span class="date-picker-icon"><i class="fa-regular fa-calendar"></i></span>
+                                            </div>
                                             <button class="btn btn-primary" id="btn-run-sync">
                                                 <i class="fa-solid fa-play"></i> <span>同期を実行</span>
                                             </button>
@@ -238,32 +292,21 @@
                 <!-- VIEW 3: Member Work Logs & Report History -->
                 <div id="view-work-logs" class="tab-view">
                     <div class="work-logs-layout">
-                        <!-- Matrix Table Panel -->
+                        <!-- Unified Tree Table Panel -->
                         <div class="panel matrix-panel">
                             <div class="panel-header">
-                                <h3 class="panel-title"><i class="fa-solid fa-calendar-days"></i> メンバー別・日別稼働実績 (h)</h3>
-                                <p class="panel-subtitle">2026年6月1日以降の各日における稼働実績時間の推移です。</p>
+                                <h3 class="panel-title"><i class="fa-solid fa-calendar-days"></i> メンバー別・日別 稼働実績 & チケット進捗推移</h3>
+                                <p class="panel-subtitle">メンバー行は実績工数（h）、チケット行は進捗率（%）を表示しています。メンバー名をクリックすると担当チケットの詳細が展開されます。</p>
                             </div>
                             <div class="panel-body table-responsive">
-                                <table class="matrix-table" id="matrix-work-table">
+                                <table class="matrix-table tree-table" id="tree-work-table">
                                     <thead>
                                         <!-- Dynamic Header (Dates) -->
                                     </thead>
-                                    <tbody id="matrix-work-tbody">
-                                        <!-- Dynamic Rows (Members) -->
+                                    <tbody id="tree-work-tbody">
+                                        <!-- Dynamic Rows -->
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-
-                        <!-- Accordion Issue Progress Panel -->
-                        <div class="panel progress-timeline-panel">
-                            <div class="panel-header">
-                                <h3 class="panel-title"><i class="fa-solid fa-list-check"></i> 担当者別・チケット進捗推移 (%)</h3>
-                                <p class="panel-subtitle">メンバーが担当する各チケットの進捗率の日別推移です。クリックでアコーディオンを開閉できます。</p>
-                            </div>
-                            <div class="panel-body accordion-body" id="accordion-progress-container">
-                                <!-- Dynamic Render of Accordions -->
                             </div>
                         </div>
                     </div>
@@ -272,7 +315,48 @@
         </main>
     </div>
 
+    <!-- EVM Guide Modal -->
+    <div id="evm-guide-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fa-solid fa-graduation-cap"></i> EVM指標の読み方</h3>
+                <span class="modal-close" id="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="info-item">
+                    <div class="info-icon good"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="info-text">
+                        <strong>SPI/CPI ≧ 1.0 (良好)</strong>
+                        <p>予定よりも進捗が早く、あるいは予算（工数）に余裕を持って稼働できています。</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="info-text">
+                        <strong>0.9 ≦ SPI/CPI &lt; 1.0 (注意)</strong>
+                        <p>わずかな遅れやコスト超過の傾向があります。タスクの調整が必要です。</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon danger"><i class="fa-solid fa-circle-xmark"></i></div>
+                    <div class="info-text">
+                        <strong>SPI/CPI &lt; 0.9 (危険)</strong>
+                        <p>深刻なスケジュール遅延、または工数の大幅超過が発生しています。対策が急務です。</p>
+                    </div>
+                </div>
+                <hr class="info-divider">
+                <div class="info-item">
+                    <div class="info-icon neutral"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="info-text">
+                        <strong>予測指標の意味</strong>
+                        <p><b>BAC</b>: 総予算 | <b>ETC</b>: 残作業見積 = (BAC-EV)/CPI | <b>EAC</b>: 完了時総コスト = AC+ETC | <b>VAC</b>: 完了時コスト差異 = BAC-EAC</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom Script -->
-    <script src="app.js"></script>
+    <script src="app.js?v=2.0.0"></script>
 </body>
 </html>

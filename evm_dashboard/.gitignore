@@ -1,0 +1,12 @@
+# 環境設定ファイル（APIキーを含むため）
+.env
+
+# データベースファイル
+evm_dashboard.db
+
+# キャッシュ・一時ファイル
+evm_data.js
+nil
+processed_news.json
+__pycache__/
+*.pyc
