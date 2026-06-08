@@ -15,9 +15,18 @@ __pycache__/
 *.log
 server.pid
 
-# バックアップフォルダ（スクラッチ・診断スクリプトは除外、dev_scripts は追跡）
+# バックアップフォルダ（スナップショット・ローカルスクリプト除外）
 backup/scratch/
+backup/evm_snapshots/
 backup/_*.py
+backup/dev_scripts/calc_only.py
+backup/dev_scripts/clear_*.py
+backup/dev_scripts/clear_*.bat
+backup/dev_scripts/dump_db.py
+backup/dev_scripts/setup_simulation.py
+backup/dev_scripts/update_db*.py
+backup/dev_scripts/*.txt
+backup/dev_scripts/*.log
 
 # 個人用 Claude Code 設定（共有しない）
 CLAUDE.local.md
