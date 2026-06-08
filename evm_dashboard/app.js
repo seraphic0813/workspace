@@ -68,12 +68,19 @@ function updateDashboard(data) {
     const memberStats = data.member_stats;
     const unit = summary.unit || '人日';
 
-    // 1. 最終同期日
+    // 1. 最終更新バッジ ＋ ヘッダーメタ情報 ＋ サイドバー基準日
     const lastUpdateEl = document.getElementById('last-update-time');
     if (lastUpdateEl) {
-        const lastSynced = summary.last_synced || '未同期';
-        lastUpdateEl.textContent = `最終同期日: ${lastSynced}`;
+        lastUpdateEl.textContent = `最終更新: ${summary.last_synced || '未同期'}`;
     }
+    const metaPlannedEl = document.getElementById('meta-planned-end');
+    if (metaPlannedEl) metaPlannedEl.textContent = formatDateJP(summary.planned_end_date);
+    const metaTeamEl = document.getElementById('meta-team-count');
+    if (metaTeamEl) metaTeamEl.textContent = `${memberStats.length}名`;
+    const metaBudgetEl = document.getElementById('meta-budget');
+    if (metaBudgetEl) metaBudgetEl.textContent = `${summary.total_budget}${unit}`;
+    const sidebarBaseDateEl = document.getElementById('sidebar-base-date');
+    if (sidebarBaseDateEl) sidebarBaseDateEl.textContent = formatDateJP(summary.base_date);
 
     // 2. KPIカード - Core Metrics
     const progressEl = document.getElementById('kpi-progress');
@@ -99,12 +106,10 @@ function updateDashboard(data) {
         setIndexStatus(summary.cpi, cpiStatusEl, cardCpi);
     }
 
-    // AC / BAC（人日単位）
+    // AC（実績コスト・人日）＋ SV/CV
     const acEl = document.getElementById('kpi-ac');
-    const bacEl = document.getElementById('kpi-bac');
     const svCvEl = document.getElementById('status-sv-cv');
     if (acEl) acEl.textContent = `${summary.ac}${unit}`;
-    if (bacEl) bacEl.textContent = `${summary.total_budget}${unit}`;
     if (svCvEl) {
         const svSign = summary.sv >= 0 ? '+' : '';
         const cvSign = summary.cv >= 0 ? '+' : '';
@@ -123,6 +128,17 @@ function updateDashboard(data) {
     // 4. 予測・見込み分析 (ETC/EAC/VAC/完了日)
     const etcEl = document.getElementById('forecast-etc');
     if (etcEl) etcEl.textContent = `${summary.etc}${unit}`;
+    // ETCカードに悲観EAC（最悪ケース）を注記: EAC_worst = AC + (BAC - EV) / (CPI × SPI)
+    const etcWorstEl = document.getElementById('etc-worst-note');
+    if (etcWorstEl) {
+        const denom = (summary.cpi || 0) * (summary.spi || 0);
+        if (denom > 0) {
+            const eacWorst = summary.ac + (summary.bac - summary.ev) / denom;
+            etcWorstEl.textContent = `最悪ケース: ${eacWorst.toFixed(2)}${unit}`;
+        } else {
+            etcWorstEl.textContent = '最悪ケース: -';
+        }
+    }
 
     const eacEl = document.getElementById('forecast-eac');
     if (eacEl) eacEl.textContent = `${summary.eac}${unit}`;
@@ -154,29 +170,44 @@ function updateDashboard(data) {
         }
     }
 
-    // 4. メンバー一覧テーブル
+    // 4. メンバー一覧テーブル（行番号・アバター・フッター集計）
     const tbody = document.getElementById('members-list-tbody');
     if (tbody) {
         tbody.innerHTML = '';
-        memberStats.forEach(member => {
+        let countGood = 0, countWarn = 0, countDanger = 0;
+        let sumSpi = 0, sumCpi = 0, nValid = 0;
+        memberStats.forEach((member, idx) => {
             const tr = document.createElement('tr');
 
             let badgeClass = 'good';
-            let badgeText = '良好';
+            let badgeText = '正常';
             const score = Math.min(member.spi, member.cpi);
             if (score < 0.9) {
                 badgeClass = 'danger';
-                badgeText = '遅延・過剰';
+                badgeText = '遅延・超過';
+                countDanger++;
             } else if (score < 1.0) {
                 badgeClass = 'warning';
                 badgeText = '調整推奨';
+                countWarn++;
+            } else {
+                countGood++;
+            }
+
+            // チーム平均は PV>0 のメンバーのみで集計（PV=0 の異常値混入を防ぐ）
+            if (member.pv > 0) {
+                sumSpi += member.spi;
+                sumCpi += member.cpi;
+                nValid++;
             }
 
             const svText = (member.sv >= 0 ? '+' : '') + member.sv;
             const cvText = (member.cv >= 0 ? '+' : '') + member.cv;
+            const initial = ((member.name || '?').trim().charAt(0)) || '?';
 
             tr.innerHTML = `
-                <td><strong>${member.name}</strong></td>
+                <td class="col-rank">${idx + 1}</td>
+                <td><span class="member-name-cell"><span class="member-avatar">${initial}</span><strong>${member.name}</strong></span></td>
                 <td>${member.pv}${unit}</td>
                 <td>${member.ev}${unit}</td>
                 <td>${member.ac}${unit}</td>
@@ -188,13 +219,34 @@ function updateDashboard(data) {
             `;
             tbody.appendChild(tr);
         });
+
+        // フッター集計（正常/注意/警告 件数 ＋ チーム平均 SPI/CPI）
+        const summaryEl = document.getElementById('members-summary');
+        const countsEl = document.getElementById('summary-counts');
+        const indicesEl = document.getElementById('team-indices');
+        if (summaryEl && countsEl && indicesEl) {
+            if (memberStats.length > 0) {
+                countsEl.innerHTML =
+                    `<span class="summary-count"><span class="summary-dot good"></span>正常 ${countGood}名</span>` +
+                    `<span class="summary-count"><span class="summary-dot warning"></span>注意 ${countWarn}名</span>` +
+                    `<span class="summary-count"><span class="summary-dot danger"></span>警告 ${countDanger}名</span>`;
+                const teamSpi = nValid > 0 ? (sumSpi / nValid).toFixed(2) : '-';
+                const teamCpi = nValid > 0 ? (sumCpi / nValid).toFixed(2) : '-';
+                indicesEl.innerHTML =
+                    `<span>チーム SPI: <strong>${teamSpi}</strong></span>` +
+                    `<span>チーム CPI: <strong>${teamCpi}</strong></span>`;
+                summaryEl.style.display = 'table-footer-group';
+            } else {
+                summaryEl.style.display = 'none';
+            }
+        }
     }
 
     // 5. EVMグラフ描画（予測線付き）
     renderEVMChart(timeSeries, forecastSeries, unit, summary);
 
-    // 6. 統合ツリーテーブル描画
-    renderTreeTable(data.member_work_logs, data.member_issue_progress, data.member_stats);
+    // 6. インサイト描画（統合判定・個人ばらつき・容量超過・予測信頼性）
+    renderInsights(summary, data.capacity_warnings || [], unit);
 }
 
 function formatDateJP(dateStr) {
@@ -293,6 +345,32 @@ function renderEVMChart(timeSeries, forecastSeries, unit, summary) {
         evmChartInstance.destroy();
     }
 
+    // 「今日」（＝表示基準日）の縦線マーカー。Chart.jsのインラインプラグインで描画（CDN追加不要）
+    const baseDateIdx = allDates.indexOf(summary.base_date);
+    const todayLinePlugin = {
+        id: 'todayLine',
+        afterDraw(chart) {
+            if (baseDateIdx < 0) return;
+            const xPos = chart.scales.x.getPixelForValue(baseDateIdx);
+            const area = chart.chartArea;
+            const c = chart.ctx;
+            c.save();
+            c.beginPath();
+            c.setLineDash([4, 4]);
+            c.lineWidth = 1.5;
+            c.strokeStyle = 'rgba(240, 246, 252, 0.35)';
+            c.moveTo(xPos, area.top);
+            c.lineTo(xPos, area.bottom);
+            c.stroke();
+            c.setLineDash([]);
+            c.fillStyle = 'rgba(240, 246, 252, 0.75)';
+            c.font = '600 11px Inter';
+            c.textAlign = 'center';
+            c.fillText('今日', xPos, area.top + 12);
+            c.restore();
+        }
+    };
+
     const datasets = [
         {
             label: 'PV (計画)',
@@ -329,24 +407,12 @@ function renderEVMChart(timeSeries, forecastSeries, unit, summary) {
         }
     ];
 
-    // 予測線がある場合のみ追加
+    // 予測線（EAC予測 = 完了時コスト予測曲線）を1本だけ追加
     if (forecastSeries.length > 0) {
         datasets.push({
-            label: 'EV予測',
-            data: evForecast,
-            borderColor: 'rgba(0, 245, 160, 0.45)',
-            backgroundColor: 'transparent',
-            borderWidth: 2,
-            borderDash: [8, 5],
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            tension: 0.2,
-            spanGaps: false
-        });
-        datasets.push({
-            label: 'AC予測',
+            label: 'EAC予測',
             data: acForecast,
-            borderColor: 'rgba(255, 69, 58, 0.45)',
+            borderColor: 'rgba(255, 69, 58, 0.5)',
             backgroundColor: 'transparent',
             borderWidth: 2,
             borderDash: [8, 5],
@@ -405,7 +471,8 @@ function renderEVMChart(timeSeries, forecastSeries, unit, summary) {
                     }
                 }
             }
-        }
+        },
+        plugins: [todayLinePlugin]
     });
 }
 
@@ -456,7 +523,15 @@ function setupNavigation() {
             viewDashboard.classList.remove('active');
             viewSync.classList.remove('active');
             if (mainTitle) mainTitle.textContent = "メンバー稼働実績 ＆ チケット進捗推移";
+            // iframeに表示基準日を反映してリロード
+            syncMemberDashboardFrame();
         });
+    }
+
+    // ヘッダーの「データを取り込む」→ 連携ステータス（同期）画面へ遷移
+    const btnFetchData = document.getElementById('btn-fetch-data');
+    if (btnFetchData && btnSyncInfo) {
+        btnFetchData.addEventListener('click', () => btnSyncInfo.click());
     }
 }
 
@@ -548,111 +623,107 @@ function appendLog(message) {
 }
 
 // ========================================================
-// 統合ツリーテーブル（メンバー稼働 + チケット進捗）
+// インサイト描画
+//   - スケジュール×コストの統合判定（一文サマリ）   [P2-6]
+//   - 全体KPIに個人ばらつきを併記（オールグリーンの罠回避） [P2-5]
+//   - 計画キャパシティ超過の警告                     [P2-4]
+//   - 完了予測の信頼性（参考値）表示                 [P2-7]
 // ========================================================
 
-function renderTreeTable(workLogs, issueProgress, memberStats) {
-    const table = document.getElementById('tree-work-table');
-    const thead = table ? table.querySelector('thead') : null;
-    const tbody = document.getElementById('tree-work-tbody');
-    if (!thead || !tbody) return;
+function renderInsights(summary, capacityWarnings, unit) {
+    unit = unit || '人日';
+    capacityWarnings = capacityWarnings || [];
 
-    thead.innerHTML = '';
-    tbody.innerHTML = '';
+    // --- 統合判定の一文サマリ + 個人ばらつき/容量タグ ---
+    const banner = document.getElementById('insight-banner');
+    const summaryEl = document.getElementById('insight-summary');
+    const tagsEl = document.getElementById('insight-tags');
+    if (banner && summaryEl && tagsEl) {
+        const text = summary.status_summary || '';
+        summaryEl.textContent = text;
+        tagsEl.innerHTML = '';
 
-    if (!workLogs || workLogs.length === 0) {
-        tbody.innerHTML = '<tr><td class="text-center" colspan="100%">稼働実績データがありません。</td></tr>';
-        return;
+        if (summary.member_alert) {
+            banner.classList.add('insight-alert');
+            const tag = document.createElement('span');
+            tag.className = 'insight-tag danger';
+            tag.innerHTML = `<i class="fa-solid fa-user-xmark"></i> 個人にばらつき: 最小SPI ${summary.member_spi_min} (${summary.member_spi_min_name})`;
+            tagsEl.appendChild(tag);
+        } else {
+            banner.classList.remove('insight-alert');
+        }
+
+        if (typeof summary.member_sv_worst === 'number' && summary.member_sv_worst < 0) {
+            const tag = document.createElement('span');
+            tag.className = 'insight-tag warning';
+            tag.innerHTML = `<i class="fa-solid fa-arrow-trend-down"></i> 最大遅延: ${summary.member_sv_worst}${unit} (${summary.member_sv_worst_name})`;
+            tagsEl.appendChild(tag);
+        }
+
+        if (capacityWarnings.length > 0) {
+            const tag = document.createElement('span');
+            tag.className = 'insight-tag danger';
+            tag.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 計画過負荷 ${capacityWarnings.length}件`;
+            tagsEl.appendChild(tag);
+        }
+
+        banner.style.display = (text || tagsEl.children.length > 0) ? 'flex' : 'none';
     }
 
-    const dates = workLogs.map(l => l.date);
-    const formattedDates = dates.map(d => {
-        const parts = d.split('-');
-        return parts.length === 3 ? `${parts[1]}/${parts[2]}` : d;
-    });
+    // --- 全体SPIカードを個人ばらつき時に注意色へ（オールグリーンの罠回避）---
+    const cardSpi = document.getElementById('card-spi');
+    const spiStatusEl = document.getElementById('status-spi');
+    if (cardSpi && spiStatusEl && summary.member_alert) {
+        if (!cardSpi.classList.contains('card-danger')) {
+            cardSpi.classList.remove('card-good');
+            cardSpi.classList.add('card-warning');
+        }
+        if (spiStatusEl.textContent.indexOf('個人') === -1) {
+            spiStatusEl.textContent += '（個人にばらつき）';
+        }
+    }
 
-    // ヘッダー
-    const trHead = document.createElement('tr');
-    trHead.innerHTML = '<th>メンバー / チケット</th>';
-    formattedDates.forEach(fd => {
-        trHead.innerHTML += `<th>${fd}</th>`;
-    });
-    thead.appendChild(trHead);
+    // --- 完了予測の信頼性（参考値）---
+    const noteEl = document.getElementById('forecast-end-note');
+    if (noteEl) {
+        if (summary.forecast_reliable === false && summary.forecast_note) {
+            noteEl.textContent = '⚠ 参考値';
+            noteEl.title = summary.forecast_note;
+            noteEl.style.opacity = '1';
+            noteEl.className = 'kpi-status status-warning';
+        } else {
+            noteEl.textContent = '-';
+            noteEl.style.opacity = '0';
+            noteEl.className = 'kpi-status';
+        }
+    }
 
-    // メンバー名はサーバーで正規化済み
-    const members = memberStats.map(m => m.name);
-    const memberIds = memberStats.map(m => m.id);
-
-    members.forEach((member, mIdx) => {
-        const memberId = memberIds[mIdx];
-        const rowId = `member-${memberId}`;
-
-        // === メンバー行（稼働実績 h） ===
-        const trMember = document.createElement('tr');
-        trMember.className = 'tree-row-member';
-        trMember.dataset.memberId = memberId;
-
-        let memberHtml = `<td><span class="tree-toggle"><i class="fa-solid fa-caret-right tree-toggle-icon"></i> ${member}</span></td>`;
-
-        workLogs.forEach(log => {
-            const val = log.hours[member];
-            if (val !== undefined && val !== null) {
-                if (val > 0) {
-                    memberHtml += `<td class="tree-cell-active">${val}h</td>`;
-                } else {
-                    memberHtml += `<td class="tree-cell-zero">0h</td>`;
-                }
-            } else {
-                memberHtml += `<td class="tree-cell-empty">-</td>`;
-            }
-        });
-
-        trMember.innerHTML = memberHtml;
-        tbody.appendChild(trMember);
-
-        // === チケット行（進捗率 %）===
-        const memberProgress = issueProgress ? issueProgress.find(mp => mp.member_id === memberId) : null;
-        const issues = memberProgress ? (memberProgress.issues || []) : [];
-
-        issues.forEach(issue => {
-            const trIssue = document.createElement('tr');
-            trIssue.className = `tree-row-issue tree-child-${memberId}`;
-
-            let issueHtml = `<td><span class="issue-id-cell">#${issue.issue_id}</span> ${issue.subject}</td>`;
-
-            dates.forEach(date => {
-                const progress = issue.progress_by_date[date];
-                if (progress !== undefined && progress !== null) {
-                    let cellClass = 'progress-cell-zero';
-                    if (progress === 100) {
-                        cellClass = 'progress-cell-complete';
-                    } else if (progress > 0) {
-                        cellClass = 'progress-cell-active';
-                    }
-                    issueHtml += `<td class="${cellClass}">${progress}%</td>`;
-                } else {
-                    issueHtml += `<td class="progress-cell-empty">-</td>`;
-                }
+    // --- 計画キャパシティ超過テーブル ---
+    const capPanel = document.getElementById('capacity-panel');
+    const capTbody = document.getElementById('capacity-tbody');
+    if (capPanel && capTbody) {
+        capTbody.innerHTML = '';
+        if (capacityWarnings.length > 0) {
+            capacityWarnings.forEach(w => {
+                const tr = document.createElement('tr');
+                const issuesText = (w.issues || [])
+                    .map(it => `#${it.issue_id} ${it.subject} (${it.hours}h)`)
+                    .join('<br>');
+                tr.innerHTML = `
+                    <td><strong>${w.member_name}</strong></td>
+                    <td>${formatDateJP(w.date)}</td>
+                    <td class="status-danger">${w.planned_hours}h</td>
+                    <td>${w.capacity}h</td>
+                    <td class="status-danger">+${w.over_hours}h</td>
+                    <td class="capacity-issues-cell">${issuesText}</td>
+                `;
+                capTbody.appendChild(tr);
             });
-
-            trIssue.innerHTML = issueHtml;
-            tbody.appendChild(trIssue);
-        });
-
-        // メンバー行のクリックで子チケット行を展開/折りたたみ
-        trMember.addEventListener('click', () => {
-            const isExpanded = trMember.classList.contains('expanded');
-            trMember.classList.toggle('expanded');
-            const childRows = tbody.querySelectorAll(`.tree-child-${memberId}`);
-            childRows.forEach(row => {
-                if (isExpanded) {
-                    row.classList.remove('visible');
-                } else {
-                    row.classList.add('visible');
-                }
-            });
-        });
-    });
+            capPanel.style.display = 'block';
+        } else {
+            capPanel.style.display = 'none';
+        }
+    }
 }
 
 // ========================================================
@@ -664,9 +735,42 @@ function setupDisplayDatePicker() {
     if (displayDateInput) {
         displayDateInput.addEventListener('change', () => {
             fetchAndRenderEVM();
+            // 稼働実績ページが表示中の場合はiframeにも反映
+            syncMemberDashboardFrame();
         });
     }
 }
+
+// ========================================================
+// iframe (member-dashboard) との基準日同期
+// ========================================================
+
+function syncMemberDashboardFrame() {
+    const frame = document.getElementById('member-dashboard-frame');
+    const displayDateInput = document.getElementById('display-date');
+    if (!frame) return;
+
+    const dateVal = displayDateInput ? displayDateInput.value : '';
+    const newSrc = '/member-dashboard/' + (dateVal ? '?date=' + encodeURIComponent(dateVal) : '');
+
+    // srcが変わる場合のみ更新（再ロード防止）
+    try {
+        const currentSrc = new URL(frame.src, window.location.origin).pathname +
+                           new URL(frame.src, window.location.origin).search;
+        const targetSrc = '/member-dashboard/' + (dateVal ? '?date=' + encodeURIComponent(dateVal) : '');
+        if (currentSrc !== targetSrc) {
+            frame.src = targetSrc;
+        } else {
+            // 同じsrcでもpostMessageでデータ更新を要求
+            try {
+                frame.contentWindow.postMessage({ type: 'date-change', date: dateVal }, window.location.origin);
+            } catch (e) { /* cross-origin safe */ }
+        }
+    } catch (e) {
+        frame.src = newSrc;
+    }
+}
+
 
 // ========================================================
 // EVM指標の読み方 - 折りたたみトグル

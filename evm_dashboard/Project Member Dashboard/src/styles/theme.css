@@ -179,3 +179,22 @@
     line-height: 1.5;
   }
 }
+
+@layer utilities {
+  .gantt-scroll-container::-webkit-scrollbar {
+    height: 6px !important;
+    width: 6px !important;
+    display: block !important;
+  }
+  .gantt-scroll-container::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  .gantt-scroll-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+  }
+  .gantt-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+}
+

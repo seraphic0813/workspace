@@ -22,8 +22,19 @@
         <aside class="sidebar">
             <div class="logo-area">
                 <i class="fa-solid fa-chart-line-up logo-icon"></i>
-                <span class="logo-text">Antigravity EVM</span>
+                <div class="logo-text-group">
+                    <span class="logo-text">Antigravity EVM</span>
+                    <span class="logo-subtext">プロジェクト管理</span>
+                </div>
             </div>
+
+            <!-- 現在のプロジェクト -->
+            <div class="current-project">
+                <span class="current-project-label">現在のプロジェクト</span>
+                <span class="current-project-name" id="sidebar-project-name">system_project_2026</span>
+                <span class="status-pill"><span class="status-dot"></span>進行中</span>
+            </div>
+
             <nav class="nav-menu">
                 <a href="#" class="nav-item active" id="btn-summary">
                     <i class="fa-solid fa-gauge-high"></i>
@@ -39,9 +50,9 @@
                 </a>
             </nav>
             <div class="sidebar-footer">
-                <div class="project-info-badge">
-                    <span class="badge-label">PROJECT ID</span>
-                    <span class="badge-value">system_project_2026</span>
+                <div class="base-date-badge">
+                    <span class="badge-label"><i class="fa-regular fa-calendar"></i> 基準日</span>
+                    <span class="badge-value" id="sidebar-base-date">-</span>
                 </div>
             </div>
         </aside>
@@ -51,8 +62,17 @@
             <!-- Top Header -->
             <header class="top-header">
                 <div class="header-left">
-                    <h1 id="main-title">EVM プロジェクト進捗分析</h1>
-                    <p class="subtitle" id="last-update-time">最終データ更新: 取得中...</p>
+                    <div class="title-row">
+                        <h1 id="main-title">EVM プロジェクト進捗分析</h1>
+                        <span class="update-badge" id="last-update-time">最終更新: 取得中...</span>
+                    </div>
+                    <div class="header-meta" id="header-meta">
+                        <span class="meta-item"><i class="fa-solid fa-calendar-check"></i> 完了予定: <strong id="meta-planned-end">-</strong></span>
+                        <span class="meta-sep">・</span>
+                        <span class="meta-item"><i class="fa-solid fa-users"></i> チーム: <strong id="meta-team-count">-</strong></span>
+                        <span class="meta-sep">・</span>
+                        <span class="meta-item"><i class="fa-solid fa-coins"></i> 総予算: <strong id="meta-budget">-</strong></span>
+                    </div>
                 </div>
                 <div class="header-right header-controls">
                     <button class="btn-guide-trigger" id="btn-guide-trigger" title="EVM指標の読み方">
@@ -65,9 +85,13 @@
                             <span class="date-picker-icon"><i class="fa-regular fa-calendar"></i></span>
                         </div>
                     </div>
-                    <button class="btn btn-primary" id="btn-sync">
+                    <button class="btn btn-secondary" id="btn-sync">
                         <i class="fa-solid fa-arrows-rotate"></i>
-                        <span>データを再読み込み</span>
+                        <span>更新</span>
+                    </button>
+                    <button class="btn btn-primary" id="btn-fetch-data">
+                        <i class="fa-regular fa-bell"></i>
+                        <span>データを取り込む</span>
                     </button>
                 </div>
             </header>
@@ -76,7 +100,16 @@
             <div class="content-scroll-container">
                 <!-- VIEW 1: Dashboard -->
                 <div id="view-dashboard" class="tab-view active">
-                    <!-- KPI Section - Row 1: Core Metrics -->
+                    <!-- Insight Banner: スケジュール×コスト統合判定 + 個人ばらつき/過負荷 -->
+                    <section id="insight-banner" class="insight-banner" style="display:none;">
+                        <div class="insight-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="insight-content">
+                            <p class="insight-summary" id="insight-summary"></p>
+                            <div class="insight-tags" id="insight-tags"></div>
+                        </div>
+                    </section>
+
+                    <!-- KPI Section - Row 1: Core Metrics（配置=画像 / 用語=正しいEVM）-->
                     <section class="kpi-grid">
                         <!-- Progress Card -->
                         <div class="kpi-card progress-card">
@@ -92,14 +125,14 @@
                             </div>
                         </div>
 
-                        <!-- BAC Card (Top) -->
-                        <div class="kpi-card" id="card-bac-top">
+                        <!-- EAC Card (完了時総コスト) -->
+                        <div class="kpi-card" id="card-eac">
                             <div class="card-icon-wrapper">
-                                <i class="fa-solid fa-bullseye"></i>
+                                <i class="fa-solid fa-flag-checkered"></i>
                             </div>
                             <div class="kpi-info">
-                                <span class="kpi-label">BAC (総予算)</span>
-                                <h2 class="kpi-value" id="kpi-bac-top">0人日</h2>
+                                <span class="kpi-label">EAC (完了時総コスト)</span>
+                                <h2 class="kpi-value" id="forecast-eac">0人日</h2>
                                 <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
                             </div>
                         </div>
@@ -128,22 +161,7 @@
                             </div>
                         </div>
 
-                        <!-- AC / BAC Card -->
-                        <div class="kpi-card">
-                            <div class="card-icon-wrapper">
-                                <i class="fa-solid fa-calculator"></i>
-                            </div>
-                            <div class="kpi-info">
-                                <span class="kpi-label">現在の総実績工数 / 総予算 (人日)</span>
-                                <h2 class="kpi-value"><span id="kpi-ac">0</span> <span class="divider">/</span> <span id="kpi-bac" class="sub-val">0</span></h2>
-                                <span class="kpi-status" id="status-sv-cv">SV: 0 | CV: 0</span>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- KPI Section - Row 2: Forecast Metrics -->
-                    <section class="kpi-grid-forecast">
-                        <!-- ETC Card -->
+                        <!-- ETC Card (残作業見積 = 残予測コスト) -->
                         <div class="kpi-card" id="card-etc">
                             <div class="card-icon-wrapper">
                                 <i class="fa-solid fa-hourglass-half"></i>
@@ -151,17 +169,21 @@
                             <div class="kpi-info">
                                 <span class="kpi-label">ETC (残作業見積)</span>
                                 <h2 class="kpi-value" id="forecast-etc">0人日</h2>
-                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                                <span class="kpi-status kpi-subnote" id="etc-worst-note">最悪ケース: -</span>
                             </div>
                         </div>
-                        <!-- EAC Card -->
-                        <div class="kpi-card" id="card-eac">
+                    </section>
+
+                    <!-- KPI Section - Row 2: Forecast Metrics -->
+                    <section class="kpi-grid-forecast">
+                        <!-- BAC Card (総予算) -->
+                        <div class="kpi-card" id="card-bac-top">
                             <div class="card-icon-wrapper">
-                                <i class="fa-solid fa-flag-checkered"></i>
+                                <i class="fa-solid fa-bullseye"></i>
                             </div>
                             <div class="kpi-info">
-                                <span class="kpi-label">EAC (完了時総コスト)</span>
-                                <h2 class="kpi-value" id="forecast-eac">0人日</h2>
+                                <span class="kpi-label">BAC (総予算)</span>
+                                <h2 class="kpi-value" id="kpi-bac-top">0人日</h2>
                                 <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
                             </div>
                         </div>
@@ -174,6 +196,17 @@
                                 <span class="kpi-label">VAC (完了時コスト差異)</span>
                                 <h2 class="kpi-value" id="forecast-vac">0人日</h2>
                                 <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                            </div>
+                        </div>
+                        <!-- AC Card (実績コスト) -->
+                        <div class="kpi-card">
+                            <div class="card-icon-wrapper">
+                                <i class="fa-solid fa-calculator"></i>
+                            </div>
+                            <div class="kpi-info">
+                                <span class="kpi-label">実績コスト (AC)</span>
+                                <h2 class="kpi-value"><span id="kpi-ac">0</span></h2>
+                                <span class="kpi-status" id="status-sv-cv">SV: 0 | CV: 0</span>
                             </div>
                         </div>
                         <!-- Planned End Date Card -->
@@ -195,7 +228,7 @@
                             <div class="kpi-info">
                                 <span class="kpi-label">完了見込み日</span>
                                 <h2 class="kpi-value kpi-value-date" id="forecast-forecast-end">-</h2>
-                                <span class="kpi-status" style="opacity: 0; margin-top: 6px;">-</span>
+                                <span class="kpi-status" id="forecast-end-note" style="opacity: 0; margin-top: 6px;">-</span>
                             </div>
                         </div>
                     </section>
@@ -210,8 +243,7 @@
                                     <span class="legend-dot pv"></span><span>PV: 計画</span>
                                     <span class="legend-dot ev"></span><span>EV: 出来高</span>
                                     <span class="legend-dot ac"></span><span>AC: 実績</span>
-                                    <span class="legend-dot ev-forecast"></span><span>EV予測</span>
-                                    <span class="legend-dot ac-forecast"></span><span>AC予測</span>
+                                    <span class="legend-dot ac-forecast"></span><span>EAC予測</span>
                                 </div>
                             </div>
                             <div class="panel-body chart-body">
@@ -230,6 +262,7 @@
                             <table class="members-table">
                                 <thead>
                                     <tr>
+                                        <th class="col-rank">#</th>
                                         <th>メンバー名</th>
                                         <th>計画価値 (PV)</th>
                                         <th>出来高 (EV)</th>
@@ -243,9 +276,42 @@
                                 </thead>
                                 <tbody id="members-list-tbody">
                                     <tr>
-                                        <td colspan="9" class="text-center">データを読み込んでいます...</td>
+                                        <td colspan="10" class="text-center">データを読み込んでいます...</td>
                                     </tr>
                                 </tbody>
+                                <tfoot id="members-summary" class="members-summary" style="display:none;">
+                                    <tr>
+                                        <td colspan="10">
+                                            <div class="members-summary-bar">
+                                                <div class="summary-counts" id="summary-counts"></div>
+                                                <div class="team-indices" id="team-indices"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Capacity Overload Warning Panel -->
+                    <section class="panel members-panel" id="capacity-panel" style="display:none;">
+                        <div class="panel-header">
+                            <h3 class="panel-title"><i class="fa-solid fa-triangle-exclamation"></i> 計画キャパシティ超過の警告</h3>
+                            <p class="panel-subtitle">1人1日あたりの計画工数が稼働上限(8h)を超えているタスク・日付です。担当者個人の能力問題と判断する前に、計画自体の過負荷を是正してください。</p>
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <table class="members-table">
+                                <thead>
+                                    <tr>
+                                        <th>メンバー名</th>
+                                        <th>該当日</th>
+                                        <th>計画工数/日</th>
+                                        <th>稼働上限</th>
+                                        <th>超過</th>
+                                        <th>該当タスク</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="capacity-tbody"></tbody>
                             </table>
                         </div>
                     </section>
@@ -289,27 +355,15 @@
                     </div>
                 </div>
 
-                <!-- VIEW 3: Member Work Logs & Report History -->
+                <!-- VIEW 3: Member Work Logs & Report History (React App) -->
                 <div id="view-work-logs" class="tab-view">
-                    <div class="work-logs-layout">
-                        <!-- Unified Tree Table Panel -->
-                        <div class="panel matrix-panel">
-                            <div class="panel-header">
-                                <h3 class="panel-title"><i class="fa-solid fa-calendar-days"></i> メンバー別・日別 稼働実績 & チケット進捗推移</h3>
-                                <p class="panel-subtitle">メンバー行は実績工数（h）、チケット行は進捗率（%）を表示しています。メンバー名をクリックすると担当チケットの詳細が展開されます。</p>
-                            </div>
-                            <div class="panel-body table-responsive">
-                                <table class="matrix-table tree-table" id="tree-work-table">
-                                    <thead>
-                                        <!-- Dynamic Header (Dates) -->
-                                    </thead>
-                                    <tbody id="tree-work-tbody">
-                                        <!-- Dynamic Rows -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <iframe
+                        id="member-dashboard-frame"
+                        src="/member-dashboard/"
+                        style="width:100%; height:calc(100vh - 100px); border:none; display:block; border-radius: 12px; overflow:hidden;"
+                        title="メンバー別進捗ダッシュボード"
+                        allow="same-origin"
+                    ></iframe>
                 </div>
             </div>
         </main>

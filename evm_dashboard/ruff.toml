@@ -1,0 +1,17 @@
+# ruff.toml - Python リンタ設定
+# 実行: python -m ruff check .          問題を検出
+#       python -m ruff check --fix .    自動修正できるものを修正
+#
+# 目的: 未使用インポートや未定義名など、編集時に混入しやすい不具合を素早く検出する。
+
+line-length = 120
+target-version = "py38"
+
+# Reactサブプロジェクトの依存物などは対象外
+extend-exclude = ["**/node_modules", "**/dist", "backup", "evm_data.js"]
+
+[lint]
+# E/W: pycodestyle, F: pyflakes(未使用import・未定義名), I: import順序
+select = ["E", "F", "W", "I"]
+# E501(行長)は既存コードに合わせて除外（バグ検出を優先しノイズを減らす）
+ignore = ["E501"]

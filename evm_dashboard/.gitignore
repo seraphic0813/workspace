@@ -10,3 +10,33 @@ nil
 processed_news.json
 __pycache__/
 *.pyc
+
+# ランタイム生成ファイル（ログ・PID）
+*.log
+server.pid
+
+# バックアップフォルダ（スクラッチ・診断スクリプトは除外、dev_scripts は追跡）
+backup/scratch/
+backup/_*.py
+
+# 個人用 Claude Code 設定（共有しない）
+CLAUDE.local.md
+
+# スクリーンショット（一時ファイル）
+screenshot_*.png
+
+# サーバー出力ファイル
+server_err.txt
+server_out.txt
+
+# 生成済みSQLファイル（setup スクリプトで自動生成）
+tmp_setup_3months.sql
+tmp_time_entries_only.sql
+
+# フロントエンドビルド成果物・依存関係
+Project Member Dashboard/dist/
+Project Member Dashboard/node_modules/
+member-dashboard/
+
+# IDE設定（個人環境依存）
+.vscode/

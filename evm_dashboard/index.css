@@ -64,7 +64,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .logo-icon {
@@ -117,7 +117,7 @@ body {
     margin-top: auto;
 }
 
-.project-info-badge {
+.base-date-badge {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
@@ -125,6 +125,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 4px;
+}
+
+.base-date-badge .badge-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .badge-label {
@@ -148,8 +154,8 @@ body {
     flex-direction: column;
     height: 100%;
     overflow: hidden;
-    padding: 32px 40px;
-    background-image: 
+    padding: 20px 28px;
+    background-image:
         radial-gradient(at 0% 0%, rgba(56, 139, 253, 0.08) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(138, 63, 252, 0.05) 0px, transparent 50%);
 }
@@ -158,15 +164,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
     flex-shrink: 0;
 }
 
 #main-title {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 700;
-    letter-spacing: -0.8px;
+    letter-spacing: -0.5px;
     background: linear-gradient(180deg, #FFFFFF 0%, #D0D5DD 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -319,24 +325,24 @@ body {
 .kpi-grid, .kpi-grid-forecast {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .kpi-grid-forecast {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 14px;
-    margin-bottom: 28px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
 }
 
 .kpi-card {
     background-color: var(--panel-bg);
     border: 1px solid var(--panel-border);
-    border-radius: 16px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 13px;
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow-main);
     transition: var(--transition-smooth);
@@ -364,13 +370,13 @@ body {
 .card-icon-wrapper {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    width: 48px;
-    height: 48px;
+    border-radius: 10px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 16px;
     color: var(--primary);
     flex-shrink: 0;
 }
@@ -388,10 +394,10 @@ body {
 }
 
 .kpi-label {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
     font-weight: 500;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
 }
 
 .kpi-card-sm .kpi-label {
@@ -401,7 +407,7 @@ body {
 
 .kpi-value {
     font-family: var(--font-heading);
-    font-size: 24px;
+    font-size: 19px;
     font-weight: 700;
     color: var(--text-main);
     display: flex;
@@ -440,7 +446,7 @@ body {
     height: 6px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 3px;
-    margin-top: 10px;
+    margin-top: 6px;
     overflow: hidden;
 }
 
@@ -472,7 +478,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
 }
 
 .panel {
@@ -487,7 +493,7 @@ body {
 }
 
 .panel-header {
-    padding: 20px 24px;
+    padding: 14px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
@@ -548,7 +554,7 @@ body {
 }
 
 .chart-body {
-    height: 380px;
+    height: 320px;
     position: relative;
 }
 
@@ -893,159 +899,302 @@ body {
 }
 
 /* ========================================================
-   Work Logs - Unified Tree Table
+   Insight Banner (統合判定 + 個人ばらつき/過負荷)
    ======================================================== */
-.work-logs-layout {
+.insight-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-left: 3px solid var(--primary);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-main);
+}
+
+.insight-banner.insight-alert {
+    border-left-color: var(--danger);
+    background-color: rgba(255, 69, 58, 0.06);
+}
+
+.insight-icon {
+    font-size: 20px;
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.insight-banner.insight-alert .insight-icon {
+    color: var(--danger);
+}
+
+.insight-content {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 10px;
+    flex-grow: 1;
+    min-width: 0;
 }
 
-.matrix-panel {
-    width: 100%;
-}
-
-/* Matrix / Tree Table */
-.matrix-table,
-.tree-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    table-layout: fixed;
-}
-
-.tree-table th {
-    background-color: rgba(255, 255, 255, 0.02);
-    color: var(--text-muted);
-    font-weight: 600;
-    padding: 12px 6px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    border-right: 1px solid rgba(255, 255, 255, 0.03);
-    text-align: center;
-    font-size: 10px;
-}
-
-.tree-table th:first-child {
-    text-align: left;
-    padding-left: 20px;
-    width: 220px;
-    font-size: 11px;
-}
-
-.tree-table td {
-    padding: 11px 6px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    border-right: 1px solid rgba(255, 255, 255, 0.03);
-    text-align: center;
+.insight-summary {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-main);
     font-weight: 500;
 }
 
-/* Member row (parent) */
-.tree-row-member td {
-    background-color: rgba(255, 255, 255, 0.02);
-}
-
-.tree-row-member td:first-child {
-    text-align: left;
-    padding-left: 20px;
-    font-weight: 700;
-    color: var(--text-main);
-    cursor: pointer;
-    user-select: none;
-}
-
-.tree-row-member:hover td {
-    background-color: rgba(56, 139, 253, 0.04);
-}
-
-.tree-toggle {
-    display: inline-flex;
-    align-items: center;
+.insight-tags {
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
-.tree-toggle-icon {
-    font-size: 10px;
-    color: var(--primary);
-    transition: transform 0.25s ease;
-    width: 14px;
-    text-align: center;
-}
-
-.tree-row-member.expanded .tree-toggle-icon {
-    transform: rotate(90deg);
-}
-
-/* Issue row (child) */
-.tree-row-issue {
-    display: none;
-}
-
-.tree-row-issue.visible {
-    display: table-row;
-}
-
-.tree-row-issue td:first-child {
-    text-align: left;
-    padding-left: 48px;
-    font-weight: 400;
-    color: var(--text-muted);
+.insight-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
     font-size: 11px;
-}
-
-.tree-row-issue td {
-    background-color: rgba(0, 0, 0, 0.12);
-}
-
-.tree-row-issue:hover td {
-    background-color: rgba(56, 139, 253, 0.03);
-}
-
-/* Tree table cell styling */
-.tree-cell-active {
-    background-color: rgba(0, 245, 160, 0.12) !important;
-    color: var(--success);
-    font-weight: 700 !important;
-}
-
-.tree-cell-empty {
-    color: rgba(255, 255, 255, 0.1);
-    font-weight: 300;
-}
-
-.tree-cell-zero {
-    color: rgba(255, 255, 255, 0.15);
-    font-weight: 300;
-}
-
-/* Progress cells in tree table */
-.progress-cell-zero {
-    color: rgba(255, 255, 255, 0.15);
-    font-weight: 300;
-}
-
-.progress-cell-active {
-    background-color: rgba(56, 139, 253, 0.12) !important;
-    color: var(--primary);
-    font-weight: 700 !important;
-    box-shadow: inset 0 0 0 1px rgba(56, 139, 253, 0.2);
-}
-
-.progress-cell-complete {
-    background-color: rgba(0, 245, 160, 0.15) !important;
-    color: var(--success);
-    font-weight: 700 !important;
-    box-shadow: inset 0 0 0 1px rgba(0, 245, 160, 0.2);
-}
-
-.progress-cell-empty {
-    color: rgba(255, 255, 255, 0.05);
-    font-weight: 300;
-}
-
-.issue-id-cell {
-    color: var(--primary);
     font-weight: 600;
-    opacity: 0.8;
-    margin-right: 6px;
+}
+
+.insight-tag.danger {
+    background-color: var(--danger-bg);
+    color: var(--danger);
+}
+
+.insight-tag.warning {
+    background-color: var(--warning-bg);
+    color: var(--warning);
+}
+
+.insight-tag.good {
+    background-color: var(--success-bg);
+    color: var(--success);
+}
+
+/* Capacity warning table: 該当タスク列は左寄せで複数行表示 */
+.capacity-issues-cell {
+    text-align: left;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* ========================================================
+   New Layout: サイドバー（プロジェクト表示・基準日）
+   ======================================================== */
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.logo-subtext {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.current-project {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.current-project-label {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.current-project-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    word-break: break-all;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--success);
+    background: var(--success-bg);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success);
+}
+
+/* ========================================================
+   New Layout: ヘッダー（最終更新バッジ・メタ情報行・2ボタン）
+   ======================================================== */
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.update-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.header-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+}
+
+.header-meta .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-meta .meta-item i {
+    color: var(--primary);
+    font-size: 12px;
+}
+
+.header-meta strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.header-meta .meta-sep {
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.btn-secondary:hover {
+    border-color: var(--panel-border-hover);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+/* KPIカードのサブ注記（最悪ケース等） */
+.kpi-subnote {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+}
+
+/* ========================================================
+   New Layout: メンバー表（行番号・アバター・フッター集計）
+   ======================================================== */
+.members-table .col-rank {
+    width: 44px;
+    text-align: center;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.member-name-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    background: var(--primary-gradient);
+}
+
+.members-summary td {
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.members-summary-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 24px;
+}
+
+.summary-counts {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.summary-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.summary-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.summary-dot.good { background: var(--success); }
+.summary-dot.warning { background: var(--warning); }
+.summary-dot.danger { background: var(--danger); }
+
+.team-indices {
+    display: inline-flex;
+    gap: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.team-indices strong {
+    color: var(--text-main);
+    font-family: var(--font-heading);
 }

@@ -59,11 +59,65 @@ class EVMHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         logger.info(f"{self.client_address[0]} - {format % args}")
 
     def do_GET(self):
-        """GET: /api/evm-data は DB からEVMデータをJSON返却。それ以外は静的ファイル。"""
+        """GET: /api/evm-data は DB からEVMデータをJSON返却。/member-dashboard/ はReactアプリを配信。それ以外は静的ファイル。"""
         if self.path.startswith("/api/evm-data"):
             self._handle_evm_data()
+        elif self.path.startswith("/member-dashboard"):
+            self._handle_member_dashboard()
         else:
             super().do_GET()
+
+    def _handle_member_dashboard(self):
+        """Reactビルド成果物（member-dashboard/）を配信する。"""
+        # /member-dashboard/ か /member-dashboard/assets/... に対して
+        # ローカルの member-dashboard/ ディレクトリを参照する
+        from urllib.parse import urlparse
+        parsed = urlparse(self.path)
+        sub_path = parsed.path  # e.g. /member-dashboard/ or /member-dashboard/assets/foo.js
+
+        # member-dashboard/ 配下のファイルを解決
+        rel = sub_path[len("/member-dashboard"):].lstrip("/")
+        if not rel:
+            rel = "index.html"
+
+        file_path = os.path.join(DIRECTORY, "member-dashboard", rel)
+
+        # パストラバーサル対策
+        file_path = os.path.realpath(file_path)
+        base_path = os.path.realpath(os.path.join(DIRECTORY, "member-dashboard"))
+        if not file_path.startswith(base_path):
+            self._send_json_error(403, "Forbidden")
+            return
+
+        if not os.path.isfile(file_path):
+            # SPA fallback: index.html を返す
+            file_path = os.path.join(DIRECTORY, "member-dashboard", "index.html")
+
+        try:
+            with open(file_path, "rb") as f:
+                content = f.read()
+
+            ext = os.path.splitext(file_path)[1].lower()
+            content_type_map = {
+                ".html": "text/html; charset=utf-8",
+                ".js": "application/javascript; charset=utf-8",
+                ".css": "text/css; charset=utf-8",
+                ".json": "application/json; charset=utf-8",
+                ".svg": "image/svg+xml",
+                ".png": "image/png",
+                ".woff2": "font/woff2",
+            }
+            content_type = content_type_map.get(ext, "application/octet-stream")
+
+            self.send_response(200)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", str(len(content)))
+            self.end_headers()
+            self.wfile.write(content)
+        except Exception as e:
+            logger.error(f"member-dashboard serve error: {e}")
+            self._send_json_error(500, str(e))
+
 
     def do_POST(self):
         """POST: /api/sync はRedmine同期を実行。"""
