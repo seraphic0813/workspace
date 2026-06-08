@@ -6,6 +6,7 @@ evm_dashboard.db
 
 # キャッシュ・一時ファイル
 evm_data.js
+evm-data.js
 nil
 processed_news.json
 __pycache__/
